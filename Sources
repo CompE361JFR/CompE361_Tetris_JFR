@@ -5,6 +5,14 @@ All the sources that we accessed and used throughout the development of this clo
 - Fate found this source before the start of Thanksgiving break. After finding it, we started using MonoGame, an extension of Visual Studio to help us program our game
 -    https://docs.microsoft.com/en-us/windows/uwp/get-started/get-started-tutorial-game-mg2d
 
+11:37 PM (Raven)
+Found a video about integrating GitHub with Visual Studio, so we don't have to constantly upload our versions of Tetris into GitHub.
+Important Timestamps (Will be updated to have more timestamps of different topics) :
+- 0:25 How to download the GitHub extension
+- 1:50 Create a new repository from GitHub
+- 3:28 The definitions of "Commit All", "Commit All and Push" and "Commit All and Synchronize"
+-    https://www.youtube.com/watch?v=Nw2tfO44_9E
+
 
 
 
