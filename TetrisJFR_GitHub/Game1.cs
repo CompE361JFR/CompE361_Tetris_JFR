@@ -7,6 +7,8 @@ using System;
 // This comment is to test the Commit /sync functions of the GitHub extension
 // on Visual Studio. -- Raven Tomas
 
+//Test of the commit/sync function. - Jayson Del Moral
+
 namespace TetrisJFR_GitHub
 {
     /// <summary>
