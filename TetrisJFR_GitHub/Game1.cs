@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Input;
 using System.Threading;
 using System;
 
+// This comment is to test the Commit /sync functions of the GitHub extension
+// on Visual Studio. -- Raven 
+
 namespace TetrisJFR_GitHub
 {
     /// <summary>
