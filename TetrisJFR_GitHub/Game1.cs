@@ -5,7 +5,7 @@ using System.Threading;
 using System;
 
 // This comment is to test the Commit /sync functions of the GitHub extension
-// on Visual Studio. -- Raven 
+// on Visual Studio. -- Raven Tomas
 
 namespace TetrisJFR_GitHub
 {
