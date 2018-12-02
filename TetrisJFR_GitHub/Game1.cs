@@ -6,6 +6,7 @@ using System;
 
 // This comment is to test the Commit /sync functions of the GitHub extension
 // on Visual Studio. -- Raven Tomas
+//test on this file - Fate
 
 //Test of the commit/sync function. - Jayson Del Moral
 
