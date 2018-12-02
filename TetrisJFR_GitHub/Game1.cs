@@ -572,62 +572,10 @@ namespace TetrisJFR_GitHub
                 //digitalBoard[19, 0] = 0;
             }
 
-            /*
-                // Below works, but doesnt turn the blocks white, or bring down other blocks
-                digitalBoard[19, 0] = 0;
-                digitalBoard[19, 1] = 0;
-                digitalBoard[19, 2] = 0;
-                digitalBoard[19, 3] = 0;
-                digitalBoard[19, 4] = 0;
-                digitalBoard[19, 5] = 0;
-                digitalBoard[19, 6] = 0;
-                digitalBoard[19, 7] = 0;
-                digitalBoard[19, 8] = 0;
-                digitalBoard[19, 9] = 0;
 
-                // 11/25/18 NOTE TO SELF, START WORKING HERE
-
-                for (int i = 0; i < 10; i++)
-                {
-                    score += 100;
-                    // bring down the block and set it to 1 on the digitalBoard
-                    if (digitalBoard[18, i] == 1)
-                    {
-                        // Bring down the block, and set it to the grid color
-                        digitalBoard[18, i] = 0;
-                        spriteBatch.Draw(blockForGrid, new Vector2(locationYArray[18, i], locationXArray[18, i]), Color.White);
-
-                        digitalBoard[19, 0] = 1;
-                        if (blockTypeArray[18, i] == 0)
-                        {
-                            spriteBatch.Draw(blockForGrid, new Vector2(19, i), Color.MediumPurple);
-                        }
-
-                        else if (blockTypeArray[18, i] == 3)
-                        {
-                            spriteBatch.Draw(blockForGrid, new Vector2(19, i), Color.Yellow);
-                        }
-
-                    }
-                }
-
-                spriteBatch.Draw(blockForGrid, new Vector2(380, 380), Color.MediumPurple);
-
-            }
-            */
             spriteBatch.End();
 
-
-
-
-
             spriteBatch.Begin();
-
-
-
-
-
-
 
             if (digitalBoard[19, 0] == 1 && digitalBoard[19, 1] == 1 &&
                 digitalBoard[19, 2] == 1 && digitalBoard[19, 3] == 1 &&
@@ -635,81 +583,91 @@ namespace TetrisJFR_GitHub
                 digitalBoard[19, 6] == 1 && digitalBoard[19, 7] == 1 &&
                 digitalBoard[19, 8] == 1 && digitalBoard[19, 9] == 1)
             {
-                //for (int row = 19; row >= 0; row--)
-                //{
-
-
-                // For loop used to delete the row that is FILLED . (the last row)
-                for (int i = 0; i < 10; i++)
+                // NOTE TO SELF (12/1/18) this for loop has something wrong with it,
+                // it deletes the last row. 
+                for (int row = 19; row > 0; row--)
                 {
-                    // Arrays follow the _array[row,column] notation
-                    deleteBlock = new fallingBlock(this, -21, locationXArray[19, i], 380);
-                    Components.Add(deleteBlock);
-                    digitalBoard[19, i] = 0; // Reset that spot back to 0, indicating no 
-                                             // block has been placed
-                    blockColorArray[19, i] = -21;
-                }
+                    // int row = 19;
 
 
-                // Now drop the 19th row down and repopulate the digitalBoard
-                // after dropping the row, make row 19 clear for now
-
-
-
-                // marker that below code is good
-                for (int i = 0; i < 10; i++) // handles the columns
-                {
-                    // Dropping row
-                    bringDownBlock = new fallingBlock(this, blockColorArray[18, i],
-                        locationXArray[19, i], locationYArray[19, i]);
-                    blockColorArray[19, i] = blockColorArray[18, i];
-                    Components.Add(bringDownBlock);
-
-                    // Resetting the contents of the row that was dropped down
-                    digitalBoard[18, i] = 0; // Reset that spot back to 0
-                    blockColorArray[18, i] = -21;
-
-                    // Clear the dropped row
-                    // Arrays follow the _array[row,column] notation
-                    deleteBlock = new fallingBlock(this, -21, locationXArray[18, i], locationYArray[18, i]);
-                    Components.Add(deleteBlock);
-                    digitalBoard[18, i] = 0; // Reset that spot back to 0, indicating no 
-                                             // block has been placed
-
-
-
-                    // Repopulating the digitalBoard
-                    if (blockColorArray[19, i] == 0 || blockColorArray[19, i] == 3)
+                    // For loop used to delete the row that is FILLED . (the last row)
+                    for (int i = 0; i < 10; i++)
                     {
-                        digitalBoard[19, i] = 1;
+                        // Arrays follow the _array[row,column] notation
+                        // Constructor follows this _fallingBlock(this, blockColor, column, row)
+                        deleteBlock = new fallingBlock(this, -21, locationXArray[row, i], locationYArray[row, i]); // ERROROROROR HEREEEEE 380!!!!!!! I FIXED IT!!!! 12/1/18 4:24 PM
+                        Components.Add(deleteBlock);
+                        digitalBoard[row, i] = 0; // Reset that spot back to 0, indicating no 
+                                                  // block has been placed
+                        blockColorArray[row, i] = -21;
                     }
 
 
-                    // makes the 19th row clear. REMEMBER: there is a 0th index
-                    // so row 20 is actually row 19 and row 19 is actually row 18
-                    //bringDownBlock = new fallingBlock(this, -21, locationXArray[18, i], 380);
-                    //Components.Add(bringDownBlock);
+                    // Now drop the 19th row down and repopulate the digitalBoard
+                    // after dropping the row, make row 19 clear for now
+
+
+
+                    // marker that below code is good
+                    for (int i = 0; i < 10; i++) // handles the columns
+                    {
+                        // Dropping row
+                        bringDownBlock = new fallingBlock(this, blockColorArray[row - 1, i],
+                            locationXArray[row, i], locationYArray[row, i]);
+                        blockColorArray[row, i] = blockColorArray[row - 1, i];
+                        Components.Add(bringDownBlock);
+
+                        // Resetting the contents of the row that was dropped down
+                        digitalBoard[row - 1, i] = 0; // Reset that spot back to 0
+                        blockColorArray[row - 1, i] = -21;
+
+                        ///* DOES THIS WORK 12/1/18 4:01 pm
+                        ///
+                        // 3:17 pm 12/1/18
+                        // Clear the dropped row
+                        // Arrays follow the _array[row,column] notation
+                        deleteBlock = new fallingBlock(this, -21, locationXArray[row - 1, i], locationYArray[row - 1, i]);
+                        Components.Add(deleteBlock);
+                        digitalBoard[row - 1, i] = 0; // Reset that spot back to 0, indicating no 
+                                                      // block has been placed
+
+
+
+
+                        // Repopulating the digitalBoard
+                        if (blockColorArray[row, i] == 0 || blockColorArray[row, i] == 3)
+                        {
+                            digitalBoard[row, i] = 1;
+                        }
+
+
+                        // makes the 19th row clear. REMEMBER: there is a 0th index
+                        // so row 20 is actually row 19 and row 19 is actually row 18
+                        //bringDownBlock = new fallingBlock(this, -21, locationXArray[18, i], 380);
+                        //Components.Add(bringDownBlock);
+                    }
+                    // marker that good code ends 
+
+                    /*
+                    // For loop used to delete the row. (the second to last row)
+                    for (int i = 0; i < 10; i++)
+                    {
+                        // Arrays follow the _array[row,column] notation
+                        deleteBlock = new fallingBlock(this, -21, locationXArray[18, i], locationYArray[18,i]);
+                        Components.Add(deleteBlock);
+                        digitalBoard[18, i] = 0; // Reset that spot back to 0, indicating no 
+                        // block has been placed
+                    }
+                    */
+
+
+                    score += 1; // REMOVE THIS. ADDED ONE
+                                // BECAUSE IF YOU DONT DO IT, THE CODE WILL KEEP RUNNING THIS
+                                // IF STATEMENT, THEREFORE MAKING THE PROGRAM SLOWER.
+
                 }
-                // marker that good code ends 
 
-                /*
-                // For loop used to delete the row. (the second to last row)
-                for (int i = 0; i < 10; i++)
-                {
-                    // Arrays follow the _array[row,column] notation
-                    deleteBlock = new fallingBlock(this, -21, locationXArray[18, i], locationYArray[18,i]);
-                    Components.Add(deleteBlock);
-                    digitalBoard[18, i] = 0; // Reset that spot back to 0, indicating no 
-                    // block has been placed
-                }
-                */
-
-
-                score += 1; // REMOVE THIS. ADDED ONE
-                            // BECAUSE IF YOU DONT DO IT, THE CODE WILL KEEP RUNNING THIS
-                            // IF STATEMENT, THEREFORE MAKING THE PROGRAM SLOWER.
-
-                // }
+                // redraw the last row....
 
             }
 
