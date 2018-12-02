@@ -108,6 +108,14 @@ namespace TetrisJFR_GitHub
 
             }
 
+            //creates shape of 3 blocks looking like ---
+            else if(blockType == 1)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Red);
+                spriteBatch.Draw(droppingBlock, new Vector2(x - 20, y), Color.Red);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y), Color.Red);
+            }
+
             // Creates the block from the grid itself. (greyBlock) This block is used in tandem
             // with the clearing of the rows
             else if (blockColor == -21)
@@ -125,6 +133,12 @@ namespace TetrisJFR_GitHub
             else if (blockColor == 3)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Yellow);
+            }
+
+            //creates red 1x3 block
+            else if (blockColor == 1)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Red);
             }
 
             // Testing if you can draw outside the draw function. DOESNT WORK

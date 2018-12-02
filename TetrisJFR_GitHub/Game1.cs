@@ -253,6 +253,17 @@ namespace TetrisJFR_GitHub
 
             // }
 
+
+
+
+            //block type 1
+            yBoard = 0;
+            yBoard2 = 0;
+            yBoard3 = 0;
+
+            xBoard = 3;
+            xBoard2 = 4;
+            xBoard3 = 5;
             /*
                 blockType == 0 below
 
@@ -514,6 +525,84 @@ namespace TetrisJFR_GitHub
                     }
 
                 }
+
+                else if(blockType == 1)
+                {
+                    currentBlock.y += 20;
+
+                    yBoard += 1;
+                    yBoard2 += 1;
+                    yBoard3 += 1;
+
+                    if (yBoard == 20)
+                    {
+                        yBoard--;
+                    }
+
+                    // if you reach the bottom, stop here and change the board array
+                    if (currentBlock.y >= 380)
+                    {
+                        //currentBlock.y -= 20;
+
+
+
+                        // Row -> Column notation
+                        digitalBoard[yBoard, xBoard] = 1;
+                        digitalBoard[yBoard2, xBoard2] = 1;
+                        digitalBoard[yBoard3, xBoard3] = 1;
+
+
+                        blockColorArray[yBoard, xBoard] = 1;
+                        blockColorArray[yBoard2, xBoard2] = 1;
+                        blockColorArray[yBoard3, xBoard3] = 1;
+
+                        // Reset the board coordinates
+                        yBoard = 0;
+                        yBoard2 = 0;
+                        yBoard3 = 0;
+
+                        xBoard = 3;
+                        xBoard2 = 4;
+                        xBoard3 = 5;
+
+
+                        /*
+                        // Create a new block
+                        blockType = randomNumberGenerator();
+
+
+                        currentBlock = new fallingBlock(this, blockType); // Set to three to test the L block
+                        Components.Add(currentBlock); // add it to the Game1 object.
+                        */
+                        generateNewObject = 1;
+
+                    }
+
+                    else if(isNextSpotFilled())
+                    {
+                        digitalBoard[yBoard, xBoard] = 1;
+                        digitalBoard[yBoard2, xBoard2] = 1;
+                        digitalBoard[yBoard3, xBoard3] = 1;
+
+                        blockColorArray[yBoard, xBoard] = 1;
+                        blockColorArray[yBoard2, xBoard2] = 1;
+                        blockColorArray[yBoard3, xBoard3] = 1;
+                        // Reset the board coordinates
+                        yBoard = 0;
+                        yBoard2 = 0;
+                        yBoard3 = 0;
+
+
+                        xBoard = 3;
+                        xBoard2 = 4;
+                        xBoard3 = 5;
+
+                        generateNewObject = 1;
+
+                    }
+
+                }
+
 
 
                 ////////
@@ -838,6 +927,28 @@ namespace TetrisJFR_GitHub
                         || digitalBoard[yBoard2 + 1, xBoard2] == 1
                         || digitalBoard[yBoard3 + 1, xBoard3] == 1
                         || digitalBoard[yBoard4 + 1, xBoard4] == 1)
+                    {
+                        return true;
+                    }
+                }
+
+                else if (blockType == 1)
+                {
+                    if (currentBlock.y >= 380)
+                    {
+                        return false;
+                    }
+                    // Row -> column notation
+                    else if (digitalBoard[yBoard + 1, xBoard] == 0
+                        && digitalBoard[yBoard2 + 1, xBoard2] == 0
+                        && digitalBoard[yBoard3 + 1, xBoard3] == 0)
+                    {
+                        return false;
+                    }
+
+                    else if (digitalBoard[yBoard + 1, xBoard] == 1
+                        || digitalBoard[yBoard2 + 1, xBoard2] == 1
+                        || digitalBoard[yBoard3 + 1, xBoard3] == 1)
                     {
                         return true;
                     }
