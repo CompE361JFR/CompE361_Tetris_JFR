@@ -54,11 +54,13 @@ namespace TetrisJFR_GitHub
         // Used when handling Keyboard Inputs
         private KeyboardState oldState;
 
+        int pauseFlag = 0;
+
         // Initializing our timer
         // Source used to create timer:
         // https://stackoverflow.com/questions/13394892/how-to-create-a-timer-counter-in-c-sharp-xna
 
-        int counter = 0;
+        float counter = 0.5f;
         float countDuration = 1; // one second
         float currentTime = 0;
 
@@ -332,191 +334,194 @@ namespace TetrisJFR_GitHub
                 currentBlock.y = 0;
             }
             */
-
-
-
-            // Increment the timer by 1 second....
-            currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            // If one second has elapsed, bring the block down
-            if (currentTime >= countDuration)
+            if (pauseFlag == 1)
+            { }
+            else
             {
+                // Increment the timer by 1 second....
+                currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                counter++; // This may be removed.
-                currentTime = 0; //Restart the timer...
-
-                // Move the 1x1 block.
-                if (blockType == 0)
+                // If one second has elapsed, bring the block down
+  
+                if (currentTime >= countDuration)
                 {
 
+                    counter++; // This may be removed.
+                    currentTime = 0; //Restart the timer...
 
-                    currentBlock.y += 20;
-                    yBoard += 1;
-
-                    // Used to prevent any out of bounds error with the board array
-                    if (yBoard == 20)
+                    // Move the 1x1 block.
+                    if (blockType == 0)
                     {
-                        yBoard--;
-                    }
 
 
-                    if (currentBlock.y >= 380)
-                    {
-                        //currentBlock.y -= 20;
+                        currentBlock.y += 20;
+                        yBoard += 1;
 
-
-
-                        // Row -> Column notation
-                        digitalBoard[yBoard, xBoard] = 1;
-                        blockColorArray[yBoard, xBoard] = 0;
-
-                        // Reset the board coordinates
-                        xBoard = 4; // change this for different blocks
-                        yBoard = 0;
-
-
-                        // Create a new block
-                        blockType = randomNumberGenerator();
-
-
-                        currentBlock = new fallingBlock(this, blockType);
-                        Components.Add(currentBlock); // add it to the Game1 object.
-
-                    }
-
-                    else if (isNextSpotFilled())
-                    {
-                        //currentBlock.y -= 20;
-
-                        // Row -> Column notation
-                        digitalBoard[yBoard, xBoard] = 1;
-                        blockColorArray[yBoard, xBoard] = 0;
-
-                        // Reset the board coordinates
-                        xBoard = 4; // change this for different blocks
-                        yBoard = 0;
-
-
-                        // Create a new block
-                        blockType = randomNumberGenerator();
-
-
-                        currentBlock = new fallingBlock(this, blockType);
-                        Components.Add(currentBlock); // add it to the Game1 object.
-                    }
-
-                } // end of the code used to move the 1x1 block
-
-
-
-                //Move the "L" block with 4 blocks.
-                else if (blockType == 3)
-                {
-                    currentBlock.y += 20;
-
-                    yBoard += 1;
-                    yBoard2 += 1;
-                    yBoard3 += 1;
-                    yBoard4 += 1;
-
-                    // This if statement used to prevent any out-of-bounds errors
-                    if (yBoard == 20)
-                    {
-                        yBoard--;
-                    }
-
-
-
-                    // if you reach the bottom, stop here and change the board array
-                    if (currentBlock.y >= 380)
-                    {
-                        //currentBlock.y -= 20;
-
-
-
-                        // Row -> Column notation
-                        digitalBoard[yBoard, xBoard] = 1;
-                        digitalBoard[yBoard2, xBoard2] = 1;
-                        digitalBoard[yBoard3, xBoard3] = 1;
-                        digitalBoard[yBoard4, xBoard4] = 1;
-
-                        blockColorArray[yBoard, xBoard] = 3;
-                        blockColorArray[yBoard2, xBoard2] = 3;
-                        blockColorArray[yBoard3, xBoard3] = 3;
-                        blockColorArray[yBoard4, xBoard4] = 3;
-
-                        // Reset the board coordinates
-                        yBoard = 0;
-                        yBoard2 = 1;
-                        yBoard3 = 2;
-                        yBoard4 = 2;
-
-                        xBoard = 4;
-                        xBoard2 = 4;
-                        xBoard3 = 4;
-                        xBoard4 = 5;
-
-
-                        // Create a new block
-                        blockType = randomNumberGenerator();
-
-
-                        currentBlock = new fallingBlock(this, blockType); // Set to three to test the L block
-                        Components.Add(currentBlock); // add it to the Game1 object.
-
-                    }
-
-                    // WEIRD ANOMALY< OUT OF RANGE EXCEPTION WHEN GOING TO THE LEFT
-                    // OCCURS RANDOMLY AT TIMES, when simultaneously pressing A and P
-                    else if (isNextSpotFilled())
-                    {
-                        //currentBlock.y -= 20;
-
-                        // Row -> Column notation
-                        digitalBoard[yBoard, xBoard] = 1;
-                        digitalBoard[yBoard2, xBoard2] = 1;
-                        digitalBoard[yBoard3, xBoard3] = 1;
-                        digitalBoard[yBoard4, xBoard4] = 1;
-
-                        blockColorArray[yBoard, xBoard] = 3;
-                        blockColorArray[yBoard2, xBoard2] = 3;
-                        blockColorArray[yBoard3, xBoard3] = 3;
-                        blockColorArray[yBoard4, xBoard4] = 3;
-
-                        // Reset the board coordinates
-                        yBoard = 0;
-                        yBoard2 = 1;
-                        yBoard3 = 2;
-                        yBoard4 = 2;
-
-                        xBoard = 4;
-                        xBoard2 = 4;
-                        xBoard3 = 4;
-                        xBoard4 = 5;
-
-
-                        // Create a new block
-                        blockType = randomNumberGenerator();
-                        /*
-                        while (blockType != 0 && blockType != 3)
+                        // Used to prevent any out of bounds error with the board array
+                        if (yBoard == 20)
                         {
-                            blockType = randomNumberGenerator.Next(0, 3);
+                            yBoard--;
                         }
-                        */
-                        currentBlock = new fallingBlock(this, blockType);
-                        Components.Add(currentBlock); // add it to the Game1 object.
+
+
+                        if (currentBlock.y >= 380)
+                        {
+                            //currentBlock.y -= 20;
+
+
+
+                            // Row -> Column notation
+                            digitalBoard[yBoard, xBoard] = 1;
+                            blockColorArray[yBoard, xBoard] = 0;
+
+                            // Reset the board coordinates
+                            xBoard = 4; // change this for different blocks
+                            yBoard = 0;
+
+
+                            // Create a new block
+                            blockType = randomNumberGenerator();
+
+
+                            currentBlock = new fallingBlock(this, blockType);
+                            Components.Add(currentBlock); // add it to the Game1 object.
+
+                        }
+
+                        else if (isNextSpotFilled())
+                        {
+                            //currentBlock.y -= 20;
+
+                            // Row -> Column notation
+                            digitalBoard[yBoard, xBoard] = 1;
+                            blockColorArray[yBoard, xBoard] = 0;
+
+                            // Reset the board coordinates
+                            xBoard = 4; // change this for different blocks
+                            yBoard = 0;
+
+
+                            // Create a new block
+                            blockType = randomNumberGenerator();
+
+
+                            currentBlock = new fallingBlock(this, blockType);
+                            Components.Add(currentBlock); // add it to the Game1 object.
+                        }
+
+                    } // end of the code used to move the 1x1 block
+
+
+
+                    //Move the "L" block with 4 blocks.
+                    else if (blockType == 3)
+                    {
+                        currentBlock.y += 20;
+
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                        yBoard4 += 1;
+
+                        // This if statement used to prevent any out-of-bounds errors
+                        if (yBoard == 20)
+                        {
+                            yBoard--;
+                        }
+
+
+
+                        // if you reach the bottom, stop here and change the board array
+                        if (currentBlock.y >= 380)
+                        {
+                            //currentBlock.y -= 20;
+
+
+
+                            // Row -> Column notation
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+                            digitalBoard[yBoard4, xBoard4] = 1;
+
+                            blockColorArray[yBoard, xBoard] = 3;
+                            blockColorArray[yBoard2, xBoard2] = 3;
+                            blockColorArray[yBoard3, xBoard3] = 3;
+                            blockColorArray[yBoard4, xBoard4] = 3;
+
+                            // Reset the board coordinates
+                            yBoard = 0;
+                            yBoard2 = 1;
+                            yBoard3 = 2;
+                            yBoard4 = 2;
+
+                            xBoard = 4;
+                            xBoard2 = 4;
+                            xBoard3 = 4;
+                            xBoard4 = 5;
+
+
+                            // Create a new block
+                            blockType = randomNumberGenerator();
+
+
+                            currentBlock = new fallingBlock(this, blockType); // Set to three to test the L block
+                            Components.Add(currentBlock); // add it to the Game1 object.
+
+                        }
+
+                        // WEIRD ANOMALY< OUT OF RANGE EXCEPTION WHEN GOING TO THE LEFT
+                        // OCCURS RANDOMLY AT TIMES, when simultaneously pressing A and P
+                        else if (isNextSpotFilled())
+                        {
+                            //currentBlock.y -= 20;
+
+                            // Row -> Column notation
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+                            digitalBoard[yBoard4, xBoard4] = 1;
+
+                            blockColorArray[yBoard, xBoard] = 3;
+                            blockColorArray[yBoard2, xBoard2] = 3;
+                            blockColorArray[yBoard3, xBoard3] = 3;
+                            blockColorArray[yBoard4, xBoard4] = 3;
+
+                            // Reset the board coordinates
+                            yBoard = 0;
+                            yBoard2 = 1;
+                            yBoard3 = 2;
+                            yBoard4 = 2;
+
+                            xBoard = 4;
+                            xBoard2 = 4;
+                            xBoard3 = 4;
+                            xBoard4 = 5;
+
+
+                            // Create a new block
+                            blockType = randomNumberGenerator();
+                            /*
+                            while (blockType != 0 && blockType != 3)
+                            {
+                                blockType = randomNumberGenerator.Next(0, 3);
+                            }
+                            */
+                            currentBlock = new fallingBlock(this, blockType);
+                            Components.Add(currentBlock); // add it to the Game1 object.
+                        }
+
                     }
 
+
+                    ////////
+                    /// Now doing row detection to delete a row. 
+                    ////////
                 }
 
 
-                ////////
-                /// Now doing row detection to delete a row. 
-                ////////
+                base.Update(gameTime);
             }
-
-
-            base.Update(gameTime);
         }
 
         /// <summary>
@@ -525,261 +530,284 @@ namespace TetrisJFR_GitHub
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
-
-
-            // Using two nested for loops allows us to create our 20 x 10 block grid.
-            // 20 x 10 = 20 rows and 10 columns
-            // Rows
-            for (int j = 0; j <= 19; j++)
+            if (pauseFlag == 1)
+            { }
+            else
             {
-                // Columns
-                for (int i = 0; i <= 9; i++)
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+
+                // TODO: Add your drawing code here
+                spriteBatch.Begin();
+
+
+                // Using two nested for loops allows us to create our 20 x 10 block grid.
+                // 20 x 10 = 20 rows and 10 columns
+                // Rows
+                for (int j = 0; j <= 19; j++)
                 {
-                    spriteBatch.Draw(blockForGrid, new Vector2((i * 20), (j * 20)), Color.White);
+                    // Columns
+                    for (int i = 0; i <= 9; i++)
+                    {
+                        spriteBatch.Draw(blockForGrid, new Vector2((i * 20), (j * 20)), Color.White);
+                    }
                 }
-            }
 
-            // Draw the logo
-            spriteBatch.Draw(tetrisLogo, new Vector2(250, 10), Color.White);
+                // Draw the logo
+                spriteBatch.Draw(tetrisLogo, new Vector2(250, 10), Color.White);
 
-            // Draw the Score
-            spriteBatch.DrawString(scoreText, score.ToString(), new Vector2(300, 100), Color.Black);
+                // Draw the Score
+                spriteBatch.DrawString(scoreText, score.ToString(), new Vector2(300, 100), Color.Black);
 
-            ///////////////////////////////////////////////////////////////////////
-            // Checking if a row has been completed, if it has, increment the score
-            // and bring every block down. 
-            ///////////////////////////////////////////////////////////////////////
-            ///
+                ///////////////////////////////////////////////////////////////////////
+                // Checking if a row has been completed, if it has, increment the score
+                // and bring every block down. 
+                ///////////////////////////////////////////////////////////////////////
+                ///
 
-            // SECTION 9 OF FATE TUT
+                // SECTION 9 OF FATE TUT
 
-            if (digitalBoard[19, 0] == 1 && digitalBoard[19, 1] == 1 &&
-                digitalBoard[19, 2] == 1 && digitalBoard[19, 3] == 1 &&
-                digitalBoard[19, 4] == 1 && digitalBoard[19, 5] == 1 &&
-                digitalBoard[19, 6] == 1 && digitalBoard[19, 7] == 1 &&
-                digitalBoard[19, 8] == 1 && digitalBoard[19, 9] == 1)
-            {
-                score += 100;
-                digitalBoard[19, 0] = 0;
-            }
-
-            /*
-                // Below works, but doesnt turn the blocks white, or bring down other blocks
-                digitalBoard[19, 0] = 0;
-                digitalBoard[19, 1] = 0;
-                digitalBoard[19, 2] = 0;
-                digitalBoard[19, 3] = 0;
-                digitalBoard[19, 4] = 0;
-                digitalBoard[19, 5] = 0;
-                digitalBoard[19, 6] = 0;
-                digitalBoard[19, 7] = 0;
-                digitalBoard[19, 8] = 0;
-                digitalBoard[19, 9] = 0;
-
-                // 11/25/18 NOTE TO SELF, START WORKING HERE
-
-                for (int i = 0; i < 10; i++)
+                if (digitalBoard[19, 0] == 1 && digitalBoard[19, 1] == 1 &&
+                    digitalBoard[19, 2] == 1 && digitalBoard[19, 3] == 1 &&
+                    digitalBoard[19, 4] == 1 && digitalBoard[19, 5] == 1 &&
+                    digitalBoard[19, 6] == 1 && digitalBoard[19, 7] == 1 &&
+                    digitalBoard[19, 8] == 1 && digitalBoard[19, 9] == 1)
                 {
                     score += 100;
-                    // bring down the block and set it to 1 on the digitalBoard
-                    if (digitalBoard[18, i] == 1)
-                    {
-                        // Bring down the block, and set it to the grid color
-                        digitalBoard[18, i] = 0;
-                        spriteBatch.Draw(blockForGrid, new Vector2(locationYArray[18, i], locationXArray[18, i]), Color.White);
-
-                        digitalBoard[19, 0] = 1;
-                        if (blockTypeArray[18, i] == 0)
-                        {
-                            spriteBatch.Draw(blockForGrid, new Vector2(19, i), Color.MediumPurple);
-                        }
-
-                        else if (blockTypeArray[18, i] == 3)
-                        {
-                            spriteBatch.Draw(blockForGrid, new Vector2(19, i), Color.Yellow);
-                        }
-
-                    }
+                    digitalBoard[19, 0] = 0;
                 }
 
-                spriteBatch.Draw(blockForGrid, new Vector2(380, 380), Color.MediumPurple);
+                /*
+                    // Below works, but doesnt turn the blocks white, or bring down other blocks
+                    digitalBoard[19, 0] = 0;
+                    digitalBoard[19, 1] = 0;
+                    digitalBoard[19, 2] = 0;
+                    digitalBoard[19, 3] = 0;
+                    digitalBoard[19, 4] = 0;
+                    digitalBoard[19, 5] = 0;
+                    digitalBoard[19, 6] = 0;
+                    digitalBoard[19, 7] = 0;
+                    digitalBoard[19, 8] = 0;
+                    digitalBoard[19, 9] = 0;
 
-            }
-            */
-            spriteBatch.End();
+                    // 11/25/18 NOTE TO SELF, START WORKING HERE
 
-
-
-
-
-            spriteBatch.Begin();
-
-
-
-
-
-
-
-            if (score == 200)
-            {
-
-                // For loop used to delete the row.
-                for (int i = 0; i < 10; i++)
-                {
-                    // Arrays follow the _array[row,column] notation
-                    deleteBlock = new fallingBlock(this, -21, locationXArray[19, i], 380);
-                    Components.Add(deleteBlock);
-                    digitalBoard[19, i] = 0; // Reset that spot back to 0, indicating no 
-                    // block has been placed
-                }
-
-
-                // Now drop the 19th row down and repopulate the digitalBoard
-                // after dropping the row, make row 19 clear for now
-
-
-
-                // marker that below code is good
-                for (int i = 0; i < 10; i++) // handles the columns
-                {
-                    // Dropping row
-                    bringDownBlock = new fallingBlock(this, blockColorArray[18, i],
-                        locationXArray[18, i], 380);
-                    Components.Add(bringDownBlock);
-
-
-
-                    // Repopulating the digitalBoard
-                    if (blockColorArray[18 + 1, i] == 0 || blockColorArray[18 + 1, i] == 3)
+                    for (int i = 0; i < 10; i++)
                     {
-                        digitalBoard[18 + 1, i] = 1;
+                        score += 100;
+                        // bring down the block and set it to 1 on the digitalBoard
+                        if (digitalBoard[18, i] == 1)
+                        {
+                            // Bring down the block, and set it to the grid color
+                            digitalBoard[18, i] = 0;
+                            spriteBatch.Draw(blockForGrid, new Vector2(locationYArray[18, i], locationXArray[18, i]), Color.White);
+
+                            digitalBoard[19, 0] = 1;
+                            if (blockTypeArray[18, i] == 0)
+                            {
+                                spriteBatch.Draw(blockForGrid, new Vector2(19, i), Color.MediumPurple);
+                            }
+
+                            else if (blockTypeArray[18, i] == 3)
+                            {
+                                spriteBatch.Draw(blockForGrid, new Vector2(19, i), Color.Yellow);
+                            }
+
+                        }
                     }
 
+                    spriteBatch.Draw(blockForGrid, new Vector2(380, 380), Color.MediumPurple);
 
-                    // makes the 19th row clear. REMEMBER: there is a 0th index
-                    // so row 20 is actually row 19 and row 19 is actually row 18
-                    //bringDownBlock = new fallingBlock(this, -21, locationXArray[18, i], 380);
-                    //Components.Add(bringDownBlock);
                 }
-                // marker that good code ends 
+                */
+                //spriteBatch.Draw(blockForGrid, new Vector2(locationYArray[19, 5], locationXArray[19, 5]), Color.Red);
+                spriteBatch.End();
 
-                // NOTE TO SELF, TO GET RID OF OUTER FOR LOOP, change "j"
-                // back to bring the 19th row down to the 20th row for the inner for loop
 
-                score += 1; // REMOVE THIS. ADDED ONE
-                // BECAUSE IF YOU DONT DO IT, THE CODE WILL KEEP RUNNING THIS
-                // IF STATEMENT, THEREFORE MAKING THE PROGRAM SLOWER.
 
+
+
+                spriteBatch.Begin();
+
+
+
+
+
+
+
+                if (score == 200)
+                {
+
+                    // For loop used to delete the row.
+                    for (int i = 0; i < 10; i++)
+                    {
+                        // Arrays follow the _array[row,column] notation
+                        deleteBlock = new fallingBlock(this, -21, locationXArray[19, i], 380);
+                        //deleteBlock.DrawOrder = 1;
+                        Components.Add(deleteBlock);
+                        digitalBoard[19, i] = 0; // Reset that spot back to 0, indicating no 
+                                                 // block has been placed
+                    }
+
+
+                    // Now drop the 19th row down and repopulate the digitalBoard
+                    // after dropping the row, make row 19 clear for now
+
+
+
+                    // marker that below code is good
+                    for (int i = 0; i < 10; i++) // handles the columns
+                    {
+                        // Dropping row
+                        bringDownBlock = new fallingBlock(this, blockColorArray[18, i],
+                            locationXArray[18, i], 380);
+                        //bringDownBlock.DrawOrder = 2;
+                        Components.Add(bringDownBlock);
+
+                        // Repopulating the digitalBoard
+                        if (blockColorArray[18 + 1, i] == 0 || blockColorArray[18 + 1, i] == 3)
+                        {
+                            digitalBoard[18 + 1, i] = 1;
+                            blockColorArray[18, i] = -21;
+                            //digitalBoard[18, i] = 0;
+                        }
+
+
+                        // makes the 19th row clear. REMEMBER: there is a 0th index
+                        // so row 20 is actually row 19 and row 19 is actually row 18
+                        //bringDownBlock = new fallingBlock(this, -21, locationXArray[18, i], 380);
+                        //Components.Add(bringDownBlock);
+                    }
+                    // marker that good code ends 
+
+                    // NOTE TO SELF, TO GET RID OF OUTER FOR LOOP, change "j"
+                    // back to bring the 19th row down to the 20th row for the inner for loop
+
+                    score += 1; // REMOVE THIS. ADDED ONE
+                                // BECAUSE IF YOU DONT DO IT, THE CODE WILL KEEP RUNNING THIS
+                                // IF STATEMENT, THEREFORE MAKING THE PROGRAM SLOWER.
+
+                }
+
+                spriteBatch.End();
+
+
+                base.Draw(gameTime);
             }
-
-            spriteBatch.End();
-
-
-            base.Draw(gameTime);
         }
 
         void KeyboardHandler()
         {
             KeyboardState newState = Keyboard.GetState();
             //bool leftArrowKeyDown = state.IsKeyDown(Keys.Left);
-
-
-            // Move Left
-            if (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A))
+            if (oldState.IsKeyUp(Keys.P) && newState.IsKeyDown(Keys.P))
             {
-                if (blockType == 0)
-                {
-                    if (currentBlock.x - 20 <= -1)
-                    {
-                        // Dont move the object left, since its out of the grid
-                    }
-
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                    }
-                }
-
-                else if (blockType == 3)
-                {
-                    if (currentBlock.x - 20 <= -1)
-                    {
-                        // Dont move the object to the left, since its out of the grid
-                    }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                        xBoard4 -= 1;
-                    }
-                }
-
+                pauseFlag ^= 1;
             }
-
-
-            // Move Right
-            else if (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D))
-            {
-                if (blockType == 0)
+            
+            
+            
+            
+                // Move Left
+                if (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A))
                 {
-                    if (xBoard + 1 >= 10)
+                    if (blockType == 0 && pauseFlag == 0)
                     {
-                        // Dont move the object to the right, since its out of the grid
+                        if (currentBlock.x - 20 <= -1)
+                        {
+                            // Dont move the object left, since its out of the grid
+                        }
+
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                        }
                     }
 
-                    else
+                    else if (blockType == 3 && pauseFlag == 0)
                     {
-                        currentBlock.x += 20;
-                        xBoard += 1;
+                        if (currentBlock.x - 20 <= -1)
+                        {
+                            // Dont move the object to the left, since its out of the grid
+                        }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                            xBoard4 -= 1;
+                        }
                     }
                 }
 
-                else if (blockType == 3)
+
+                // Move Right
+                else if (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D))
                 {
-                    if (xBoard + 2 >= 10)
+                    if (blockType == 0 && pauseFlag == 0)
                     {
-                        // Dont move the object to the right, since its out of the grid
+                        if (xBoard + 1 >= 10)
+                        {
+                            // Dont move the object to the right, since its out of the grid
+                        }
+
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                        }
                     }
-                    else
+
+                    else if (blockType == 3 && pauseFlag == 0)
                     {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
-                        xBoard4 += 1;
+                        if (xBoard + 2 >= 10)
+                        {
+                            // Dont move the object to the right, since its out of the grid
+                        }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                            xBoard4 += 1;
+                        }
                     }
                 }
-            }
 
-            else if (oldState.IsKeyUp(Keys.P) && newState.IsKeyDown(Keys.P))
-            {
-                if (blockType == 0)
+                else if (oldState.IsKeyUp(Keys.S) && newState.IsKeyDown(Keys.S))
                 {
-                    // currentBlock.changeY();
-                    currentBlock.y += 20;
-                    yBoard += 1;
+                    if (blockType == 0 && pauseFlag == 0)
+                    {
+                        if (currentBlock.y + 20 >= 340)
+                        { }
+                        // currentBlock.changeY();
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                        }
+                    }
+
+                    else if (blockType == 3 && pauseFlag == 0)
+                    {
+                        if (currentBlock.y + 20 >= 320)
+                        { }
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                            yBoard4 += 1;
+                        }
+                    }
+
                 }
 
-                else if (blockType == 3)
-                {
-                    currentBlock.y += 20;
-                    yBoard += 1;
-                    yBoard2 += 1;
-                    yBoard3 += 1;
-                    yBoard4 += 1;
-                }
-
-            }
-
-            oldState = newState;
-
+                oldState = newState;
+            
 
         } // end of keyboardhandler
 
