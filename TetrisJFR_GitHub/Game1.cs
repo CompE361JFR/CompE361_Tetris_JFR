@@ -855,25 +855,40 @@ namespace TetrisJFR_GitHub
                 if (blockType == 0 && pauseFlag == 0)
                 {
                     // currentBlock.changeY();
-                    currentBlock.y += 20;
-                    yBoard += 1;
+                    if (isNextSpotFilled() || currentBlock.y + 40 >= 380)
+                    { }
+                    else
+                    {
+                        currentBlock.y += 20;
+                        yBoard += 1;
+                    }
                 }
 
                 else if (blockType == 3 && pauseFlag == 0)
                 {
-                    currentBlock.y += 20;
-                    yBoard += 1;
-                    yBoard2 += 1;
-                    yBoard3 += 1;
-                    yBoard4 += 1;
+                    if (isNextSpotFilled() || currentBlock.y + 60 >= 380)
+                    { }
+                    else
+                    {
+                        currentBlock.y += 20;
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                        yBoard4 += 1;
+                    }
                 }
 
                 else if (blockType == 1 && pauseFlag == 0)
                 {
-                    currentBlock.y += 20;
-                    yBoard += 1;
-                    yBoard2 += 1;
-                    yBoard3 += 1;
+                    if (isNextSpotFilled() || currentBlock.y + 40 >= 380)
+                    { }
+                    else
+                    {
+                        currentBlock.y += 20;
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                    }
                 }
 
             }
