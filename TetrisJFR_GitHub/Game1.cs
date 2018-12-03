@@ -226,12 +226,21 @@ namespace TetrisJFR_GitHub
             currentBlock = new fallingBlock(this, blockType);
             Components.Add(currentBlock); // add it to the Game1 object.
 
+
+            // POTENTIAL ERROR HERE: Once we add more blocks, these xBoard and yBoard
+            // coordinates might overlap write over each other, causing weird
+            // out of bound exceptions.
+
+            // ERROR - you get a out of bound exception of the "L" block is the block
+            // that spawns first. This could be because it's coordinates are overwritten
+            // by the 1x3 "---" block. This can be seen below. 
+
             // 1x1 Block // BlockType = 0 // 
             yBoard = 0;          // Looks like this
             xBoard = 4;          // *
-          
+
             // 3x2 "L" Block // BlockType = 2 // 
-            yBoard = 0;          
+            yBoard = 0;
             yBoard2 = 1;         // Looks like this
             yBoard3 = 2;         // *
             yBoard4 = 2;         // *
@@ -240,7 +249,7 @@ namespace TetrisJFR_GitHub
             xBoard2 = 4;
             xBoard3 = 4;
             xBoard4 = 5;
-            
+
 
             // 1x3 "---" Block // BlockType = 1 //
             yBoard = 0;
@@ -250,7 +259,7 @@ namespace TetrisJFR_GitHub
             xBoard = 4;
             xBoard2 = 5;
             xBoard3 = 6;
-            
+
             base.Initialize();
 
 
@@ -308,7 +317,7 @@ namespace TetrisJFR_GitHub
             // need to program.
             KeyboardHandler();
 
-           
+
             // Increment the timer by 1 second....
             currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -333,52 +342,33 @@ namespace TetrisJFR_GitHub
                         yBoard--;
                     }
 
-                    // If the block reaches the bottom, place it there and generate a new block
+                    // If the block reaches the bottom, place it there,
+                    // populate the arrays and generate a new block
                     if (currentBlock.y >= 380)
                     {
-                        //currentBlock.y -= 20;
-
-
-
                         // Row -> Column notation
-                        digitalBoard[yBoard, xBoard] = 1;
-                        blockColorArray[yBoard, xBoard] = 0;
+                        digitalBoard[yBoard, xBoard] = 1; //Populate the digitalBoard
+                        blockColorArray[yBoard, xBoard] = 0; //Populate the blockColorArray
 
                         // Reset the board coordinates
                         xBoard = 4; // change this for different blocks
                         yBoard = 0;
 
-                        /*
-                        // Create a new block
-                        blockType = randomNumberGenerator();
-
-
-                        currentBlock = new fallingBlock(this, blockType);
-                        Components.Add(currentBlock); // add it to the Game1 object.
-                        */
+                        // Used for generating a new block
                         generateNewObject = 1;
                     }
 
                     else if (isNextSpotFilled())
                     {
-                        //currentBlock.y -= 20;
-
                         // Row -> Column notation
-                        digitalBoard[yBoard, xBoard] = 1;
-                        blockColorArray[yBoard, xBoard] = 0;
+                        digitalBoard[yBoard, xBoard] = 1; //Populate the digitalBoard
+                        blockColorArray[yBoard, xBoard] = 0; //Populate the blockColorArray
 
                         // Reset the board coordinates
                         xBoard = 4; // change this for different blocks
                         yBoard = 0;
 
-                        /*
-                        // Create a new block
-                        blockType = randomNumberGenerator();
-
-
-                        currentBlock = new fallingBlock(this, blockType);
-                        Components.Add(currentBlock); // add it to the Game1 object.
-                        */
+                        // Used for generating a new block
                         generateNewObject = 1;
                     }
 
@@ -402,21 +392,20 @@ namespace TetrisJFR_GitHub
                         yBoard--;
                     }
 
-
-
-                    // if you reach the bottom, stop here and change the board array
+                    // If the block reaches the bottom, place it there,
+                    // populate the arrays and generate a new block
                     if (currentBlock.y >= 380)
                     {
-                        //currentBlock.y -= 20;
 
+                        // Row -> Column notation //
 
-
-                        // Row -> Column notation
+                        //Populate the digitalBoard
                         digitalBoard[yBoard, xBoard] = 1;
                         digitalBoard[yBoard2, xBoard2] = 1;
                         digitalBoard[yBoard3, xBoard3] = 1;
                         digitalBoard[yBoard4, xBoard4] = 1;
 
+                        //Populate the blockColorArray
                         blockColorArray[yBoard, xBoard] = 3;
                         blockColorArray[yBoard2, xBoard2] = 3;
                         blockColorArray[yBoard3, xBoard3] = 3;
@@ -433,15 +422,7 @@ namespace TetrisJFR_GitHub
                         xBoard3 = 4;
                         xBoard4 = 5;
 
-
-                        /*
-                        // Create a new block
-                        blockType = randomNumberGenerator();
-
-
-                        currentBlock = new fallingBlock(this, blockType); // Set to three to test the L block
-                        Components.Add(currentBlock); // add it to the Game1 object.
-                        */
+                        // Used for generating a new block
                         generateNewObject = 1;
 
                     }
@@ -450,14 +431,15 @@ namespace TetrisJFR_GitHub
                     // OCCURS RANDOMLY AT TIMES, when simultaneously pressing A and P
                     else if (isNextSpotFilled())
                     {
-                        //currentBlock.y -= 20;
+                        // Row -> Column notation //
 
-                        // Row -> Column notation
+                        //Populate the digitalBoard
                         digitalBoard[yBoard, xBoard] = 1;
                         digitalBoard[yBoard2, xBoard2] = 1;
                         digitalBoard[yBoard3, xBoard3] = 1;
                         digitalBoard[yBoard4, xBoard4] = 1;
 
+                        //Populate the blockColorArray
                         blockColorArray[yBoard, xBoard] = 3;
                         blockColorArray[yBoard2, xBoard2] = 3;
                         blockColorArray[yBoard3, xBoard3] = 3;
@@ -474,19 +456,14 @@ namespace TetrisJFR_GitHub
                         xBoard3 = 4;
                         xBoard4 = 5;
 
-                        /*
-                        // Create a new block
-                        blockType = randomNumberGenerator();
-                        
-                        currentBlock = new fallingBlock(this, blockType);
-                        Components.Add(currentBlock); // add it to the Game1 object.
-                        */
+                        // Used for generating a new block
                         generateNewObject = 1;
                     }
 
                 }
 
-                else if(blockType == 1)
+                // Move the 1x3 "---" block
+                else if (blockType == 1)
                 {
                     currentBlock.y += 20;
 
@@ -494,6 +471,7 @@ namespace TetrisJFR_GitHub
                     yBoard2 += 1;
                     yBoard3 += 1;
 
+                    // This if statement used to prevent any out-of-bounds errors
                     if (yBoard == 20)
                     {
                         yBoard--;
@@ -502,16 +480,15 @@ namespace TetrisJFR_GitHub
                     // if you reach the bottom, stop here and change the board array
                     if (currentBlock.y >= 380)
                     {
-                        //currentBlock.y -= 20;
 
+                        // Row -> Column notation //
 
-
-                        // Row -> Column notation
+                        //Populate the digitalBoard
                         digitalBoard[yBoard, xBoard] = 1;
                         digitalBoard[yBoard2, xBoard2] = 1;
                         digitalBoard[yBoard3, xBoard3] = 1;
 
-
+                        //Populate the blockColorArray
                         blockColorArray[yBoard, xBoard] = 1;
                         blockColorArray[yBoard2, xBoard2] = 1;
                         blockColorArray[yBoard3, xBoard3] = 1;
@@ -525,20 +502,12 @@ namespace TetrisJFR_GitHub
                         xBoard2 = 5;
                         xBoard3 = 6;
 
-
-                        /*
-                        // Create a new block
-                        blockType = randomNumberGenerator();
-
-
-                        currentBlock = new fallingBlock(this, blockType); // Set to three to test the L block
-                        Components.Add(currentBlock); // add it to the Game1 object.
-                        */
+                        // Used for generating a new block
                         generateNewObject = 1;
 
                     }
 
-                    else if(isNextSpotFilled())
+                    else if (isNextSpotFilled())
                     {
                         digitalBoard[yBoard, xBoard] = 1;
                         digitalBoard[yBoard2, xBoard2] = 1;
@@ -547,32 +516,28 @@ namespace TetrisJFR_GitHub
                         blockColorArray[yBoard, xBoard] = 1;
                         blockColorArray[yBoard2, xBoard2] = 1;
                         blockColorArray[yBoard3, xBoard3] = 1;
+
                         // Reset the board coordinates
                         yBoard = 0;
                         yBoard2 = 0;
                         yBoard3 = 0;
 
-
                         xBoard = 4;
                         xBoard2 = 5;
                         xBoard3 = 6;
 
+                        // Used for generating a new block
                         generateNewObject = 1;
 
                     }
 
                 }
 
-
-
-                ////////
-                /// Now doing row detection to delete a row. 
-                ////////
             }
 
 
             base.Update(gameTime);
-        }
+        } // End of the Update function
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -610,8 +575,8 @@ namespace TetrisJFR_GitHub
             ///////////////////////////////////////////////////////////////////////
             ///
 
-            // SECTION 9 OF FATE TUT
-
+            /* 
+            // Note, merge this with other statement OR DELETE IT
             if (digitalBoard[19, 0] == 1 && digitalBoard[19, 1] == 1 &&
                 digitalBoard[19, 2] == 1 && digitalBoard[19, 3] == 1 &&
                 digitalBoard[19, 4] == 1 && digitalBoard[19, 5] == 1 &&
@@ -619,110 +584,95 @@ namespace TetrisJFR_GitHub
                 digitalBoard[19, 8] == 1 && digitalBoard[19, 9] == 1)
             {
                 score += 100;
-                //digitalBoard[19, 0] = 0;
+                
             }
-
-
+            */
             spriteBatch.End();
+
+
 
             spriteBatch.Begin();
 
-            if (digitalBoard[19, 0] == 1 && digitalBoard[19, 1] == 1 &&
-                digitalBoard[19, 2] == 1 && digitalBoard[19, 3] == 1 &&
-                digitalBoard[19, 4] == 1 && digitalBoard[19, 5] == 1 &&
-                digitalBoard[19, 6] == 1 && digitalBoard[19, 7] == 1 &&
-                digitalBoard[19, 8] == 1 && digitalBoard[19, 9] == 1)
+            for (int f = 19; f > 0; f--)
             {
-                // NOTE TO SELF (12/1/18) this for loop has something wrong with it,
-                // it deletes the last row. 
-                for (int row = 19; row > 0; row--)
+
+                // Check if a row is filled. If a row is filled, delete the row
+                // increment your score and bring every block down. 
+                if (digitalBoard[f, 0] == 1 && digitalBoard[f, 1] == 1 &&
+                    digitalBoard[f, 2] == 1 && digitalBoard[f, 3] == 1 &&
+                    digitalBoard[f, 4] == 1 && digitalBoard[f, 5] == 1 &&
+                    digitalBoard[f, 6] == 1 && digitalBoard[f, 7] == 1 &&
+                    digitalBoard[f, 8] == 1 && digitalBoard[f, 9] == 1)
                 {
-                    // int row = 19;
 
-
-                    // For loop used to delete the row that is FILLED . (the last row)
-                    for (int i = 0; i < 10; i++)
+                    // Bring blocks down from every row of the playing grid
+                    for (int row = f; row > 0; row--)
                     {
-                        // Arrays follow the _array[row,column] notation
-                        // Constructor follows this _fallingBlock(this, blockColor, column, row)
-                        deleteBlock = new fallingBlock(this, -21, locationXArray[row, i], locationYArray[row, i]); // ERROROROROR HEREEEEE 380!!!!!!! I FIXED IT!!!! 12/1/18 4:24 PM
-                        Components.Add(deleteBlock);
-                        digitalBoard[row, i] = 0; // Reset that spot back to 0, indicating no 
-                                                  // block has been placed
-                        blockColorArray[row, i] = -21;
-                    }
+                        // int row = 19; // DELETE ME LATER PLEASE
 
-
-                    // Now drop the 19th row down and repopulate the digitalBoard
-                    // after dropping the row, make row 19 clear for now
-
-
-
-                    // marker that below code is good
-                    for (int i = 0; i < 10; i++) // handles the columns
-                    {
-                        // Dropping row
-                        bringDownBlock = new fallingBlock(this, blockColorArray[row - 1, i],
-                            locationXArray[row, i], locationYArray[row, i]);
-                        blockColorArray[row, i] = blockColorArray[row - 1, i];
-                        Components.Add(bringDownBlock);
-
-                        // Resetting the contents of the row that was dropped down
-                        digitalBoard[row - 1, i] = 0; // Reset that spot back to 0
-                        blockColorArray[row - 1, i] = -21;
-
-                        ///* DOES THIS WORK 12/1/18 4:01 pm
-                        ///
-                        // 3:17 pm 12/1/18
-                        // Clear the dropped row
-                        // Arrays follow the _array[row,column] notation
-                        deleteBlock = new fallingBlock(this, -21, locationXArray[row - 1, i], locationYArray[row - 1, i]);
-                        Components.Add(deleteBlock);
-                        digitalBoard[row - 1, i] = 0; // Reset that spot back to 0, indicating no 
-                                                      // block has been placed
-
-
-
-
-                        // Repopulating the digitalBoard
-                        if (blockColorArray[row, i] == 0 || blockColorArray[row, i] == 3)
+                        // For loop used to delete the nth row that is FILLED. 
+                        for (int i = 0; i < 10; i++)
                         {
-                            digitalBoard[row, i] = 1;
+                            // Arrays follow the _array[row,column] notation
+                            // Constructor follows this _fallingBlock(this, blockColor, column, row)
+                            deleteBlock = new fallingBlock(this, -21, locationXArray[row, i], locationYArray[row, i]); // ERROROROROR HEREEEEE 380!!!!!!! I FIXED IT!!!! 12/1/18 4:24 PM
+                            Components.Add(deleteBlock);
+                            digitalBoard[row, i] = 0; // Reset that spot back to 0, indicating no 
+                                                      // block has been placed
+                            blockColorArray[row, i] = -21;
+                        }
+
+                        // Now drop the (n-1)th row down and repopulate the digitalBoard
+                        // after dropping the row, make row (n-1) clear for now
+
+                        for (int i = 0; i < 10; i++) // handles the columns
+                        {
+                            // Dropping row
+                            bringDownBlock = new fallingBlock(this, blockColorArray[row - 1, i],
+                                locationXArray[row, i], locationYArray[row, i]);
+                            blockColorArray[row, i] = blockColorArray[row - 1, i];
+                            Components.Add(bringDownBlock);
+
+                            // Resetting the contents of the row that was dropped down
+                            digitalBoard[row - 1, i] = 0; // Reset that spot back to 0
+                            blockColorArray[row - 1, i] = -21;
+
+                            // Clear the dropped row
+                            // Arrays follow the _array[row,column] notation
+                            deleteBlock = new fallingBlock(this, -21, locationXArray[row - 1, i], locationYArray[row - 1, i]);
+                            Components.Add(deleteBlock);
+                            digitalBoard[row - 1, i] = 0; // Reset that spot back to 0, indicating no 
+                                                          // block has been placed
+
+                            // Repopulating the digitalBoard
+                            if (blockColorArray[row, i] == 0 || blockColorArray[row, i] == 3 || blockColorArray[row, i] == 1)
+                            {
+                                digitalBoard[row, i] = 1;
+                            }
+
+
                         }
 
 
-                        // makes the 19th row clear. REMEMBER: there is a 0th index
-                        // so row 20 is actually row 19 and row 19 is actually row 18
-                        //bringDownBlock = new fallingBlock(this, -21, locationXArray[18, i], 380);
-                        //Components.Add(bringDownBlock);
+                        score += 1; // 
+
                     }
-                    // marker that good code ends 
 
-                    /*
-                    // For loop used to delete the row. (the second to last row)
-                    for (int i = 0; i < 10; i++)
-                    {
-                        // Arrays follow the _array[row,column] notation
-                        deleteBlock = new fallingBlock(this, -21, locationXArray[18, i], locationYArray[18,i]);
-                        Components.Add(deleteBlock);
-                        digitalBoard[18, i] = 0; // Reset that spot back to 0, indicating no 
-                        // block has been placed
-                    }
-                    */
+                    score += 1;
+                    score += 100;
+                    // Should increment score by 120. This can be changed if we
+                    // want to increment it by a different score. 
+                    break;
 
+                } // end of the " if f " statement
 
-                    score += 1; // REMOVE THIS. ADDED ONE
-                                // BECAUSE IF YOU DONT DO IT, THE CODE WILL KEEP RUNNING THIS
-                                // IF STATEMENT, THEREFORE MAKING THE PROGRAM SLOWER.
-
-                }
-
-                // redraw the last row....
-
-            }
+            } // end of " for f " loop
 
             spriteBatch.End();
 
+            // Generates a new block after placing the current Block. 
+            // This is drawn last so that it draws over other objects, so it
+            // can be seen and not hide under other blocks.
             spriteBatch.Begin();
 
             if (generateNewObject == 1)
@@ -733,6 +683,43 @@ namespace TetrisJFR_GitHub
                 currentBlock = new fallingBlock(this, blockType);
                 Components.Add(currentBlock); // add it to the Game1 object.
                 generateNewObject = 0;
+
+                // Restarting the coordinates of the randomly generate shape
+
+                // Reset coordinates to match 1x1 shape 
+                if (blockType == 0)
+                {
+                    xBoard = 4; // change this for different blocks
+                    yBoard = 0;
+                }
+
+                // Reset coordinates to match 1x3  "- - -" shape
+                else if (blockType == 1)
+                {
+                    yBoard = 0;
+                    yBoard2 = 0;
+                    yBoard3 = 0;
+
+                    xBoard = 4;
+                    xBoard2 = 5;
+                    xBoard3 = 6;
+                }
+
+                // Reset coordinates to match 3x2 "L" shape
+                else if (blockType == 3)
+                {
+                    yBoard = 0;
+                    yBoard2 = 1;
+                    yBoard3 = 2;
+                    yBoard4 = 2;
+
+                    xBoard = 4;
+                    xBoard2 = 4;
+                    xBoard3 = 4;
+                    xBoard4 = 5;
+                }
+
+
             }
 
             spriteBatch.End();
@@ -745,7 +732,6 @@ namespace TetrisJFR_GitHub
         {
             KeyboardState newState = Keyboard.GetState();
             //bool leftArrowKeyDown = state.IsKeyDown(Keys.Left);
-
 
             // Move Left
             if (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A))
@@ -782,9 +768,9 @@ namespace TetrisJFR_GitHub
 
                 else if (blockType == 1)
                 {
-                    if(currentBlock.x - 20 <= -1)
+                    if (currentBlock.x - 20 <= -1)
                     {
-
+                        // Dont move the object to the left, since its out of the grid
                     }
                     else
                     {
@@ -793,7 +779,7 @@ namespace TetrisJFR_GitHub
                         xBoard2 -= 1;
                         xBoard3 -= 1;
                     }
-                 }
+                }
             }
 
 
@@ -830,11 +816,11 @@ namespace TetrisJFR_GitHub
                     }
                 }
 
-                else if(blockType == 1)
+                else if (blockType == 1)
                 {
-                    if(xBoard + 3 >= 10)
+                    if (xBoard + 3 >= 10)
                     {
-                        
+                        // Dont move the object to the right, since its out of the grid
                     }
                     else
                     {
@@ -890,8 +876,7 @@ namespace TetrisJFR_GitHub
                         return false;
                     }
 
-
-                    // Row -> column notation
+                    // Row -> column notation //
                     else if (digitalBoard[yBoard + 1, xBoard] == 0)
                     {
                         return false;
