@@ -109,7 +109,7 @@ namespace TetrisJFR_GitHub
             }
 
             //creates shape of 3 blocks looking like ---
-            else if(blockType == 1)
+            else if (blockType == 1)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Red);
                 spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y), Color.Red);
@@ -135,28 +135,16 @@ namespace TetrisJFR_GitHub
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Yellow);
             }
 
-            //creates red 1x3 block
+            // Creates Red 1x1 block
             else if (blockColor == 1)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Red);
             }
 
-            // Testing if you can draw outside the draw function. DOESNT WORK
-            //spriteBatch.Begin();
-
-            // DELETE ME THIS IS CLUTTER
-            // spriteBatch.Draw(droppingBlock, new Vector2(0, 360), Color.Red);
-
-            //spriteBatch.End();
-
-
             spriteBatch.End();
 
 
-
-
             base.Draw(gameTime);
-
 
         }
 
