@@ -226,61 +226,31 @@ namespace TetrisJFR_GitHub
             currentBlock = new fallingBlock(this, blockType);
             Components.Add(currentBlock); // add it to the Game1 object.
 
-            //deleteBlock = new fallingBlock(this, 0, 180, 380);
-            //Components.Add(deleteBlock);
-
-            // Initializing the coordinates of the first object
-            // depending on its block type.
-            // 11/25/18 I REMOVED THE IF AND ELSE IF STATEMENTS, TO SEE
-            // IF IT FIXES THE WEIRD ANOMLAY ERROR
-            //if (blockType == 0)
-            //{
-            yBoard = 0;
-            xBoard = 4;
-            //}
-
-            // else if (blockType == 3)
-            // {
-            yBoard = 0;
-            yBoard2 = 1;
-            yBoard3 = 2;
-            yBoard4 = 2;
-
+            // 1x1 Block // BlockType = 0 // 
+            yBoard = 0;          // Looks like this
+            xBoard = 4;          // *
+          
+            // 3x2 "L" Block // BlockType = 2 // 
+            yBoard = 0;          
+            yBoard2 = 1;         // Looks like this
+            yBoard3 = 2;         // *
+            yBoard4 = 2;         // *
+                                 // * *
             xBoard = 4;
             xBoard2 = 4;
             xBoard3 = 4;
             xBoard4 = 5;
+            
 
-            // }
-
-
-
-            //block type 1
+            // 1x3 "---" Block // BlockType = 1 //
             yBoard = 0;
-            yBoard2 = 0;
-            yBoard3 = 0;
+            yBoard2 = 0;        // Looks like this
+            yBoard3 = 0;        // * * *
 
             xBoard = 4;
             xBoard2 = 5;
             xBoard3 = 6;
-            /*
-                blockType == 0 below
-
-               *     ----->   xBoard/yBoard
-             
-
-
-                blockType == 3 below
-
-                *              yBoard/xBoard
-                *     ---->    yBoard2/xBoard2
-                * *            yBoard3/xBoard3  yBoard4/xBoard4
-             
-            */
-
-
-
-
+            
             base.Initialize();
 
 
@@ -338,16 +308,7 @@ namespace TetrisJFR_GitHub
             // need to program.
             KeyboardHandler();
 
-            // Code to check the boundary of the game window
-            /*
-            if (currentBlock.y >= 500)
-            {
-                currentBlock.y = 0;
-            }
-            */
-
-
-
+           
             // Increment the timer by 1 second....
             currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -372,7 +333,7 @@ namespace TetrisJFR_GitHub
                         yBoard--;
                     }
 
-
+                    // If the block reaches the bottom, place it there and generate a new block
                     if (currentBlock.y >= 380)
                     {
                         //currentBlock.y -= 20;
@@ -903,6 +864,14 @@ namespace TetrisJFR_GitHub
                     yBoard4 += 1;
                 }
 
+                else if (blockType == 1)
+                {
+                    currentBlock.y += 20;
+                    yBoard += 1;
+                    yBoard2 += 1;
+                    yBoard3 += 1;
+                }
+
             }
 
             oldState = newState;
@@ -1013,7 +982,7 @@ namespace TetrisJFR_GitHub
             Random RNG = new Random();
             int randomNumber = RNG.Next(0, 3);
 
-            while (randomNumber != 0 && randomNumber != 3)
+            while (randomNumber != 0 && randomNumber != 3 && randomNumber != 1)
             {
                 randomNumber = RNG.Next(0, 4);
             }

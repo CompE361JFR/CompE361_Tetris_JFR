@@ -135,7 +135,7 @@ namespace TetrisJFR_GitHub
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Yellow);
             }
 
-            //creates red 1x3 block
+            // Creates Red 1x1 block
             else if (blockColor == 1)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Red);
