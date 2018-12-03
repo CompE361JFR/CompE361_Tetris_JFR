@@ -65,5 +65,8 @@ is filled. Once the row is cleared and every block is brought down, it increment
   only. It should work with every row now.
 - I've also did some housekeeping, like getting rid of old comments, and making the code more readable.
 
+(Jayson)
+-I added a simple pause feature to the game using conditional statements and a flag.
+
 
 */
