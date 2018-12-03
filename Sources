@@ -21,18 +21,23 @@ https://stackoverflow.com/questions/31104248/monogame-rotating-a-sprite
 11/30 11:12AM
 http://rbwhitaker.wikidot.com/monogame-2d-tutorials
 
-11/30/18 (Raven)
+11/30/18
+(Raven)
 I found a video on how add existing projects to our repository:
     -https://www.youtube.com/watch?v=nRI3OVavUbE
 (Jayson)
 Article on how to fork a repo:
     https://help.github.com/articles/fork-a-repo/
 
-12/1/18 (Raven)
+12/1/18
+(Raven)
 - Found a source where we can change the order of our sprites/pictures, so one is on top of another
 - By using this source, I just set the falling block to be drawn last, so it is on top
   of any other sprite/image in the game. 
     -https://stackoverflow.com/questions/26110585/ordering-objects-in-monogame 
-   
 
+12/3/2018
+(Jayson)
+- I looked up a source to understand how to sync a forked repo to the master/upstream/main repo:
+    https://www.youtube.com/watch?v=-zvHQXnBO6c
 */
