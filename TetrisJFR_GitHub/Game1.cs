@@ -903,6 +903,14 @@ namespace TetrisJFR_GitHub
                     yBoard4 += 1;
                 }
 
+                else if (blockType == 1)
+                {
+                    currentBlock.y += 20;
+                    yBoard += 1;
+                    yBoard2 += 1;
+                    yBoard3 += 1;
+                }
+
             }
 
             oldState = newState;
@@ -1013,7 +1021,7 @@ namespace TetrisJFR_GitHub
             Random RNG = new Random();
             int randomNumber = RNG.Next(0, 3);
 
-            while (randomNumber != 0 && randomNumber != 3)
+            while (randomNumber != 0 && randomNumber != 3 && randomNumber != 1)
             {
                 randomNumber = RNG.Next(0, 4);
             }
