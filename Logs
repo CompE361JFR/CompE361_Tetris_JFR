@@ -55,8 +55,7 @@ is filled. Once the row is cleared and every block is brought down, it increment
 
 12/2/18
 (Fate)
-- I have created a new block for the game that is 1x3 and would look like this ---. I shall be adding the code for it to move
-sideways and move down fasted later in the day. 
+- I have created code for a new block for the game that is 1x3 and would look like this --- and it can be moved left and right.
 
 
 */
