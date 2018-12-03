@@ -67,6 +67,7 @@ is filled. Once the row is cleared and every block is brought down, it increment
 
 (Jayson)
 -I added a simple pause feature to the game using conditional statements and a flag.
-
+-Trying to make the speed-up-falling mechanic less buggy by preventing it from being done when there is something in the way or when it
+is at the bottom. Still buggy.
 
 */
