@@ -53,7 +53,10 @@ is filled. Once the row is cleared and every block is brought down, it increment
   and it will not increment your score.
 - Further development of this function will be needed, and will be done so on a different day. 
 
-
+12/2/18
+(Fate)
+- I have created a new block for the game that is 1x3 and would look like this ---. I shall be adding the code for it to move
+sideways and move down fasted later in the day. 
 
 
 */
