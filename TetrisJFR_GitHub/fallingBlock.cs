@@ -112,8 +112,8 @@ namespace TetrisJFR_GitHub
             else if(blockType == 1)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Red);
-                spriteBatch.Draw(droppingBlock, new Vector2(x - 20, y), Color.Red);
                 spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y), Color.Red);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 40, y), Color.Red);
             }
 
             // Creates the block from the grid itself. (greyBlock) This block is used in tandem

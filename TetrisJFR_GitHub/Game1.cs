@@ -255,15 +255,14 @@ namespace TetrisJFR_GitHub
 
 
 
-
             //block type 1
             yBoard = 0;
             yBoard2 = 0;
             yBoard3 = 0;
 
-            xBoard = 3;
-            xBoard2 = 4;
-            xBoard3 = 5;
+            xBoard = 4;
+            xBoard2 = 5;
+            xBoard3 = 6;
             /*
                 blockType == 0 below
 
@@ -561,9 +560,9 @@ namespace TetrisJFR_GitHub
                         yBoard2 = 0;
                         yBoard3 = 0;
 
-                        xBoard = 3;
-                        xBoard2 = 4;
-                        xBoard3 = 5;
+                        xBoard = 4;
+                        xBoard2 = 5;
+                        xBoard3 = 6;
 
 
                         /*
@@ -593,9 +592,9 @@ namespace TetrisJFR_GitHub
                         yBoard3 = 0;
 
 
-                        xBoard = 3;
-                        xBoard2 = 4;
-                        xBoard3 = 5;
+                        xBoard = 4;
+                        xBoard2 = 5;
+                        xBoard3 = 6;
 
                         generateNewObject = 1;
 
@@ -820,6 +819,20 @@ namespace TetrisJFR_GitHub
                     }
                 }
 
+                else if (blockType == 1)
+                {
+                    if(currentBlock.x - 20 <= -1)
+                    {
+
+                    }
+                    else
+                    {
+                        currentBlock.x -= 20;
+                        xBoard -= 1;
+                        xBoard2 -= 1;
+                        xBoard3 -= 1;
+                    }
+                 }
             }
 
 
@@ -853,6 +866,21 @@ namespace TetrisJFR_GitHub
                         xBoard2 += 1;
                         xBoard3 += 1;
                         xBoard4 += 1;
+                    }
+                }
+
+                else if(blockType == 1)
+                {
+                    if(xBoard + 3 >= 10)
+                    {
+                        
+                    }
+                    else
+                    {
+                        currentBlock.x += 20;
+                        xBoard += 1;
+                        xBoard2 += 1;
+                        xBoard3 += 1;
                     }
                 }
             }
