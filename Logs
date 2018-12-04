@@ -70,4 +70,9 @@ is filled. Once the row is cleared and every block is brought down, it increment
 -Trying to make the speed-up-falling mechanic less buggy by preventing it from being done when there is something in the way or when it
 is at the bottom. Still buggy.
 
+(Fate)
+- I have fixed the bug for pressing  the key "P", which now allows the blocks to fall faster without exceeding the playing grid, however,
+I still have to fix the blocks stopping when there is another block underneath. And the L block is still buggy and I still need to 
+that. I'll be doing this tomorrow
+
 */
