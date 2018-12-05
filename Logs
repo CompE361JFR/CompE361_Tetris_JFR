@@ -93,5 +93,7 @@ that. I'll be doing this tomorrow
   
 - I've seperated our main file into their own .cs file, each containing their own function, since the Game1.cs was getting quite large.
   This will help with the readability of our code. 
+  
+- I've also created another block, which is the vertical version of the "- - -" block. 
 
 */
