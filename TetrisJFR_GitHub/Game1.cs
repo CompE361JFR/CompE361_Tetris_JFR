@@ -25,6 +25,13 @@ namespace TetrisJFR_GitHub
          
        - When deleting blocks or clearing rows, have an array that has all the characteritics
         -of the block, so you can bring it down later using the draw function
+
+
+        ------------------------------------------------------
+        NOTE TO SELF: maybe create a updateArray() function, 
+        which updates the contents of the array, instead of doing it for each blockType.
+        This will prevent the programmer from typing repetitive code
+        ------------------------------------------------------
          
     */
 
@@ -197,6 +204,8 @@ namespace TetrisJFR_GitHub
 
         int generateNewObject = 0;
 
+        bool gameOver = false; 
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -241,7 +250,7 @@ namespace TetrisJFR_GitHub
             yBoard = 0;          // Looks like this
             xBoard = 4;          // *
 
-            // 3x2 "L" Block // BlockType = 2 // 
+            // 3x2 "L" Block // BlockType = 3 // 
             yBoard = 0;
             yBoard2 = 1;         // Looks like this
             yBoard3 = 2;         // *
@@ -315,12 +324,37 @@ namespace TetrisJFR_GitHub
 
             // TODO: Add your update logic here
 
-            // A handler that handles the keyboard inputs, that you
-            // need to program.
+            // Activating the handler that handles the keyboard inputs, 
             KeyboardHandler();
+
+            // ERROR: Only occured once. It printed game over when
+            // the highest block was on the half way mark
+            
+            // Check if the top is filled, If it is, that means one of the
+            // blocks on the second row is filled. So end the game.
+            if (
+                                      (   isNextSpotFilled()   )
+                                                  &&
+                      ( digitalBoard[1, 0] == 1 || digitalBoard[1, 1] == 1 ||
+                        digitalBoard[1, 2] == 1 || digitalBoard[1, 3] == 1 ||
+                        digitalBoard[1, 4] == 1 || digitalBoard[1, 5] == 1 ||
+                        digitalBoard[1, 6] == 1 || digitalBoard[1, 7] == 1 ||
+                        digitalBoard[1, 8] == 1 || digitalBoard[1, 9] == 1    )
+
+                ) // end of if statement
+            {
+                gameOver = true;
+            }
+            
 
             if (pauseFlag == 1)
             { }
+
+            else if ( gameOver == true)
+            {
+                // Do nothing, since the game is over. 
+                // It prints out a statement, which can be seen in the draw function
+            }
             else
             {
                 // Increment the timer by 1 second....
@@ -540,9 +574,21 @@ namespace TetrisJFR_GitHub
 
                 }
 
+                // Checking if the user fills the board up to the top row.
+                // If true, the game is over, so stop the game and print
+                // "Game Over"
+                if (    digitalBoard[0, 0] == 1 || digitalBoard[0, 1] == 1 ||
+                        digitalBoard[0, 2] == 1 || digitalBoard[0, 3] == 1 ||
+                        digitalBoard[0, 4] == 1 || digitalBoard[0, 5] == 1 ||
+                        digitalBoard[0, 6] == 1 || digitalBoard[0, 7] == 1 ||
+                        digitalBoard[0, 8] == 1 || digitalBoard[0, 9] == 1    )
+                {
+                    gameOver = true;
+                }
 
 
-                base.Update(gameTime);
+
+                    base.Update(gameTime);
             }
         } // End of the Update function
 
@@ -579,6 +625,13 @@ namespace TetrisJFR_GitHub
 
                 // Draw the Score
                 spriteBatch.DrawString(scoreText, score.ToString(), new Vector2(300, 100), Color.Black);
+
+                // Game Over text that spawns
+                if (gameOver == true)
+                {
+                    spriteBatch.DrawString(scoreText, "GAME OVER", new Vector2(280, 150), Color.Red);
+                }
+
 
                 ///////////////////////////////////////////////////////////////////////
                 // Checking if a row has been completed, if it has, increment the score
@@ -692,7 +745,7 @@ namespace TetrisJFR_GitHub
                     blockType = randomNumberGenerator();
 
                     currentBlock = new fallingBlock(this, blockType);
-                    Components.Add(currentBlock); // add it to the Game1 object.
+                    Components.Add(currentBlock); // add it to the Game1 object
                     generateNewObject = 0;
 
                     // Restarting the coordinates of the randomly generate shape
