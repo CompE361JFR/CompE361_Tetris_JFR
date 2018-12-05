@@ -36,30 +36,52 @@ namespace TetrisJFR_GitHub
             // that spawns first. This could be because it's coordinates are overwritten
             // by the 1x3 "---" block. This can be seen below. 
 
-            // 1x1 Block // BlockType = 0 // 
-            yBoard = 0;          // Looks like this
-            xBoard = 4;          // *
 
-            // 3x2 "L" Block // BlockType = 3 // 
-            yBoard = 0;
-            yBoard2 = 1;         // Looks like this
-            yBoard3 = 2;         // *
-            yBoard4 = 2;         // *
-                                 // * *
-            xBoard = 4;
-            xBoard2 = 4;
-            xBoard3 = 4;
-            xBoard4 = 5;
+            if (blockType == 0)
+            {
+                // 1x1 Block // BlockType = 0 // 
+                yBoard = 0;          // Looks like this
+                xBoard = 4;          // *
+            }
 
+            else if (blockType == 3)
+            {
+                // 3x2 "L" Block // BlockType = 3 // 
+                yBoard = 0;
+                yBoard2 = 1;         // Looks like this
+                yBoard3 = 2;         // *
+                yBoard4 = 2;         // *
+                                     // * *
+                xBoard = 4;
+                xBoard2 = 4;
+                xBoard3 = 4;
+                xBoard4 = 5;
+            }
 
-            // 1x3 "---" Block // BlockType = 1 //
-            yBoard = 0;
-            yBoard2 = 0;        // Looks like this
-            yBoard3 = 0;        // * * *
+            else if (blockType == 1)
+            {
+                // 1x3 "---" Block // BlockType = 1 //
+                yBoard = 0;
+                yBoard2 = 0;        // Looks like this
+                yBoard3 = 0;        // * * *
 
-            xBoard = 4;
-            xBoard2 = 5;
-            xBoard3 = 6;
+                xBoard = 4;
+                xBoard2 = 5;
+                xBoard3 = 6;
+
+            }
+
+            else if (blockType == 2)
+            {
+                // 3x1 block, the vertical version of " - - - " Block // BlockType = 2 //
+                yBoard = 0;
+                yBoard2 = 1;
+                yBoard3 = 2;
+
+                xBoard = 4;
+                xBoard2 = 4;
+                xBoard3 = 4;
+            }
 
             base.Initialize();
 

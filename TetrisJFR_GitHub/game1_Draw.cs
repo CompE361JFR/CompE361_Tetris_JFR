@@ -6,7 +6,7 @@ using System;
 
 namespace TetrisJFR_GitHub
 {
-    public partial class Game1: Game
+    public partial class Game1 : Game
     {
         /// <summary>
         /// This is called when the game should draw itself.
@@ -125,7 +125,7 @@ namespace TetrisJFR_GitHub
                                                               // block has been placed
 
                                 // Repopulating the digitalBoard
-                                if (blockColorArray[row, i] == 0 || blockColorArray[row, i] == 3 || blockColorArray[row, i] == 1)
+                                if (blockColorArray[row, i] == 0 || blockColorArray[row, i] == 3 || blockColorArray[row, i] == 1 || blockColorArray[row, i] == 2)
                                 {
                                     digitalBoard[row, i] = 1;
                                 }
@@ -197,6 +197,18 @@ namespace TetrisJFR_GitHub
                         xBoard2 = 4;
                         xBoard3 = 4;
                         xBoard4 = 5;
+                    }
+
+                    // Reset coordinates to match 3x1 vertical "- - -" shape
+                    else if (blockType == 2)
+                    {
+                        yBoard = 0;
+                        yBoard2 = 1;
+                        yBoard3 = 2;
+
+                        xBoard = 4;
+                        xBoard2 = 4;
+                        xBoard3 = 4;
                     }
 
 

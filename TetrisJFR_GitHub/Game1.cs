@@ -204,7 +204,7 @@ namespace TetrisJFR_GitHub
 
         int generateNewObject = 0;
 
-        bool gameOver = false; 
+        bool gameOver = false;
 
         public Game1()
         {
@@ -212,27 +212,22 @@ namespace TetrisJFR_GitHub
             Content.RootDirectory = "Content";
         }
 
-        
-        
-
-        //  Initialize() was here before
-
-        
-
-        // LoadContent() was here before.
-
-        
-
-        // UnloadContent() was here before
-
-        
 
 
-        // Update() was here before.
 
-        
 
-        // Draw() was here before. 
+
+
+
+
+        // unloadContent was here before
+
+
+        // Update() was here before
+
+
+
+        // Draw was here before.
 
         void KeyboardHandler()
         {
@@ -291,6 +286,23 @@ namespace TetrisJFR_GitHub
                         xBoard3 -= 1;
                     }
                 }
+
+                else if (blockType == 2 && pauseFlag == 0)
+                {
+                    if (currentBlock.x - 20 <= -1)
+                    {
+                        // Dont move the object to the left, since its out of the grid
+                    }
+
+                    else
+                    {
+                        currentBlock.x -= 20;
+                        xBoard -= 1;
+                        xBoard2 -= 1;
+                        xBoard3 -= 1;
+                    }
+
+                }
             }
 
 
@@ -313,7 +325,7 @@ namespace TetrisJFR_GitHub
 
                 else if (blockType == 3 && pauseFlag == 0)
                 {
-                    if (xBoard + 2 >= 10)
+                    if (xBoard + 2 >= 10) // 12/5/18
                     {
                         // Dont move the object to the right, since its out of the grid
                     }
@@ -340,6 +352,23 @@ namespace TetrisJFR_GitHub
                         xBoard2 += 1;
                         xBoard3 += 1;
                     }
+                }
+
+                else if (blockType == 2 && pauseFlag == 0)
+                {
+                    if (xBoard + 1 >= 10 || xBoard2 + 1 >= 10 || xBoard3 + 1 >= 10)
+                    {
+                        // Dont move the object to the right, since its out of the grid
+                    }
+
+                    else
+                    {
+                        currentBlock.x += 20;
+                        xBoard += 1;
+                        xBoard2 += 1;
+                        xBoard3 += 1;
+                    }
+
                 }
             }
 
@@ -383,6 +412,20 @@ namespace TetrisJFR_GitHub
                         yBoard2 += 1;
                         yBoard3 += 1;
                     }
+                }
+
+                else if (blockType == 2 && pauseFlag == 0)
+                {
+                    if (isNextSpotFilled() || currentBlock.y + 40 >= 380)
+                    { }
+                    else
+                    {
+                        currentBlock.y += 20;
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                    }
+
                 }
 
             }
@@ -462,6 +505,30 @@ namespace TetrisJFR_GitHub
                         return true;
                     }
                 }
+
+                else if (blockType == 2)
+                {
+                    if (currentBlock.y >= 380)
+                    {
+                        return false;
+                    }
+
+                    // Row -> column notation
+                    else if (digitalBoard[yBoard + 1, xBoard] == 0
+                        && digitalBoard[yBoard2 + 1, xBoard2] == 0
+                        && digitalBoard[yBoard3 + 1, xBoard3] == 0)
+                    {
+                        return false;
+                    }
+
+                    else if (digitalBoard[yBoard + 1, xBoard] == 1
+                        || digitalBoard[yBoard2 + 1, xBoard2] == 1
+                        || digitalBoard[yBoard3 + 1, xBoard3] == 1)
+                    {
+                        return true;
+                    }
+
+                }
             }
 
             catch
@@ -492,9 +559,9 @@ namespace TetrisJFR_GitHub
              
             */
             Random RNG = new Random();
-            int randomNumber = RNG.Next(0, 3);
+            int randomNumber = RNG.Next(0, 4);
 
-            while (randomNumber != 0 && randomNumber != 3 && randomNumber != 1)
+            while (randomNumber != 0 && randomNumber != 3 && randomNumber != 1 && randomNumber != 2)
             {
                 randomNumber = RNG.Next(0, 4);
             }

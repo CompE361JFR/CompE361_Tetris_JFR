@@ -268,6 +268,92 @@ namespace TetrisJFR_GitHub
 
                     }
 
+                    // Move the vertical " - - - " block. 
+                    else if (blockType == 2)
+                    {
+                        currentBlock.y += 20;
+
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+
+                        // These if statements are used to prevent any out-of-bounds errors
+                        if (yBoard == 20)
+                        {
+                            yBoard--;
+                        }
+
+                        if (yBoard2 == 20)
+                        {
+                            yBoard--;
+                        }
+
+                        if (yBoard3 == 20)
+                        {
+                            yBoard--;
+                        }
+
+                        // if you reach the bottom, stop here and change the board array
+                        if (currentBlock.y >= 380)
+                        {
+
+                            // Row -> Column notation //
+
+                            //Populate the digitalBoard
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+
+                            //Populate the blockColorArray
+                            blockColorArray[yBoard, xBoard] = 2;
+                            blockColorArray[yBoard2, xBoard2] = 2;
+                            blockColorArray[yBoard3, xBoard3] = 2;
+
+                            /* GET RID OF THIS!!!!
+                            // Reset the board coordinates
+                            yBoard = 0;
+                            yBoard2 = 0;
+                            yBoard3 = 0;
+
+                            xBoard = 4;
+                            xBoard2 = 5;
+                            xBoard3 = 6;
+                            */
+
+                            // Used for generating a new block
+                            generateNewObject = 1;
+
+                        }
+
+                        else if (isNextSpotFilled())
+                        {
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+
+                            blockColorArray[yBoard, xBoard] = 2;
+                            blockColorArray[yBoard2, xBoard2] = 2;
+                            blockColorArray[yBoard3, xBoard3] = 2;
+
+                            //GET RID OF THIS
+                            /* 
+                            // Reset the board coordinates
+                            yBoard = 0;
+                            yBoard2 = 0;
+                            yBoard3 = 0;
+
+                            xBoard = 4;
+                            xBoard2 = 5;
+                            xBoard3 = 6;
+                            */
+
+                            // Used for generating a new block
+                            generateNewObject = 1;
+
+                        }
+
+                    }
+
                 }
 
                 // Checking if the user fills the board up to the top row.
