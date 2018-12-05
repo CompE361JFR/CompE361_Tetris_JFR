@@ -104,6 +104,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="fallingBlock.cs" />
+    <Compile Include="game1_Draw.cs" />
+    <Compile Include="game1_Initialize.cs" />
+    <Compile Include="game1_LoadContent.cs" />
+    <Compile Include="game1_UnloadContent.cs" />
+    <Compile Include="game1_Update.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
