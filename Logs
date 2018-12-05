@@ -75,4 +75,20 @@ is at the bottom. Still buggy.
 I still have to fix the blocks stopping when there is another block underneath. And the L block is still buggy and I still need to 
 that. I'll be doing this tomorrow
 
+---------------------------------------------------------------------------------------------------------------------------------------
+12/4/18
+
+- Today we spent the day trying to fix the errors between the versions of Tetris that we have been uploading. Sometimes GitHub would
+  not let us commit our changes, because a team member has committed some changes before hand, therefore not allowing another team
+  member to upload their work since their versions are different. 
+  
+  
+---------------------------------------------------------------------------------------------------------------------------------------
+12/5/18
+
+(Raven) 
+- Just finished with having an event that would end the game, once once of the top rows have been filled. It has been uploaded.
+  One thing to note, even though it stops the game, the user can still move the block using the "A" and "D" keys. Further debugging
+  will be necessary to make this feature better. 
+
 */
