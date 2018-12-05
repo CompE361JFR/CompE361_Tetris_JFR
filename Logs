@@ -90,5 +90,8 @@ that. I'll be doing this tomorrow
 - Just finished with having an event that would end the game, once once of the top rows have been filled. It has been uploaded.
   One thing to note, even though it stops the game, the user can still move the block using the "A" and "D" keys. Further debugging
   will be necessary to make this feature better. 
+  
+- I've seperated our main file into their own .cs file, each containing their own function, since the Game1.cs was getting quite large.
+  This will help with the readability of our code. 
 
 */
