@@ -27,7 +27,6 @@ namespace TetrisJFR_GitHub
             currentBlock = new fallingBlock(this, blockType);
             Components.Add(currentBlock); // add it to the Game1 object.
 
-
             // POTENTIAL ERROR HERE: Once we add more blocks, these xBoard and yBoard
             // coordinates might overlap write over each other, causing weird
             // out of bound exceptions.

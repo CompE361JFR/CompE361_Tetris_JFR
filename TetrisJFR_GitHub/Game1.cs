@@ -239,6 +239,26 @@ namespace TetrisJFR_GitHub
                 pauseFlag ^= 1;
             }
 
+            //Pressing R to restart should reset score and the board, but it currently does not work as intended.
+            //The board does not reset.
+            if (oldState.IsKeyUp(Keys.R) && newState.IsKeyDown(Keys.R) && gameOver == true)
+            {
+                score = 100;
+                int numRow = 20;
+                int l;
+                int p;
+                int numCol = 10;
+                for (l = 0; l < numRow; ++l)
+                {
+                    for (p = 0; p < numCol; ++p)
+                    {
+                        digitalBoard[l, p] = 0;
+                        blockColorArray[l, p] = -21;
+                    }
+                }
+                gameOver = false;
+            }
+
             // Move Left
             if (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A))
             {

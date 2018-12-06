@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Threading;
 using System;
+using System.Collections.Generic;
 
 namespace TetrisJFR_GitHub
 {
@@ -15,7 +16,11 @@ namespace TetrisJFR_GitHub
         protected override void Draw(GameTime gameTime)
         {
             if (pauseFlag == 1)
-            { }
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(scoreText, "Paused", new Vector2(200, 420), Color.Red);
+                spriteBatch.End();
+            }
             else
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -32,20 +37,44 @@ namespace TetrisJFR_GitHub
                     // Columns
                     for (int i = 0; i <= 9; i++)
                     {
-                        spriteBatch.Draw(blockForGrid, new Vector2((i * 20), (j * 20)), Color.White);
+                        spriteBatch.Draw(blockForGrid, new Vector2(i * 20, j * 20), Color.White);
                     }
                 }
 
                 // Draw the logo
-                spriteBatch.Draw(tetrisLogo, new Vector2(250, 10), Color.White);
+                spriteBatch.Draw(tetrisLogo, new Vector2(210, 10), Color.White);
 
                 // Draw the Score
-                spriteBatch.DrawString(scoreText, score.ToString(), new Vector2(300, 100), Color.Black);
+                spriteBatch.DrawString(scoreText, "Score: " + score.ToString(), new Vector2(212, 240), Color.Yellow);
 
+                /* Draw High Score (Only saves highscores of current session right now)
+                 * 
+                 * 
+                 *
+                 */
+                
+                
+                    spriteBatch.DrawString(scoreText, "Highscores:", new Vector2(212, 80), Color.White);
+                    List<int> highscores = new List<int>() { 0, 0, 0 };
+                    highscores.Sort();
+                    highscores.Reverse(); //Sort method puts the smallest into index 0, but scores should be sorted the other way.
+                    int k;
+                    for (k = 0; k < 3; ++k) //Only show top 3 scores.
+                        spriteBatch.DrawString(scoreText, (k + 1) + ". " + highscores[k].ToString(), new Vector2(270, 120 + (40 * k)), Color.White);
+                
                 // Game Over text that spawns
                 if (gameOver == true)
                 {
-                    spriteBatch.DrawString(scoreText, "GAME OVER", new Vector2(280, 150), Color.Red);
+                    for (k = 0; k < 3; ++k) //Redraw the highscores in black so it dissapears.
+                        spriteBatch.DrawString(scoreText, (k + 1) + ". " + highscores[k].ToString(), new Vector2(270, 120 + (40 * k)), Color.CornflowerBlue);
+                    spriteBatch.DrawString(scoreText, "Game Over", new Vector2(200, 410), Color.Red);
+                    spriteBatch.DrawString(scoreText, "Press R to restart.", new Vector2(200, 450), Color.Red);
+                    highscores.Add(score);
+                    highscores.Sort();
+                    highscores.Reverse();
+                    for (k = 0; k < 3; ++k) //Draw the updated highscores.
+                        spriteBatch.DrawString(scoreText, (k + 1) + ". " + highscores[k].ToString(), new Vector2(270, 120 + (40 * k)), Color.White);
+
                 }
 
 
