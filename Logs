@@ -108,5 +108,8 @@ that. I'll be doing this tomorrow
 (Jayson)
 - Today (Wednesday), I began work on the high score mechanic and a restart after game-over should the player want to play again. Both are still
   unfinished, as they are directly connected together.
+- I originally wanted to implement the high scores by writing/reading them from a text file, but I ran into difficulties with access
+  permissions on the file. The program apparently does not have access to the text file (regardless of where I put it). For now I have
+  settled with using a list collection class.
   
 */
