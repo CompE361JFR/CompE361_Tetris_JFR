@@ -96,4 +96,13 @@ that. I'll be doing this tomorrow
   
 - I've also created another block, which is the vertical version of the "- - -" block. 
 
+(Fate)
+- I added a new block that would look like this:
+  *
+  * *
+    *
+  and added the moving features such as moving left and right and move down faster. I also fixed the bug we had whenever we would spam 
+  "P". I also fixed the bug of the blocks to not go through other blocks whenever they move left or right. There are still
+  bugs in the game that I need to fix but I will be doing so another day. I will also be adding a new block soon.
+  
 */
