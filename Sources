@@ -41,3 +41,8 @@ Article on how to fork a repo:
 - I looked up a source to understand how to sync a forked repo to the master/upstream/main repo:
     https://www.youtube.com/watch?v=-zvHQXnBO6c
 */
+
+12/5/2018
+(Jayson)
+- I googled the possible methods available to use on a list collection class. Here is the one I needed:
+https://stackoverflow.com/questions/17409526/sorting-list-from-greatest-to-least
