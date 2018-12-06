@@ -91,12 +91,16 @@ namespace TetrisJFR_GitHub
             spriteBatch.Begin();
 
             // Creates a 1x1 block
+            //  *
             if (blockType == 0)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.MediumPurple);
             }
 
-            // Creates a shape with four blocks, like a "L"
+            // Creates a shape with four blocks
+            //  *
+            //  *
+            //  * *
             else if (blockType == 3)
             {
 
@@ -108,7 +112,8 @@ namespace TetrisJFR_GitHub
 
             }
 
-            //creates shape of 3 blocks looking like ---
+            //creates shape of 3 blocks looking like
+            // * * *
             else if (blockType == 1)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Red);
@@ -128,6 +133,18 @@ namespace TetrisJFR_GitHub
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y + 40), Color.IndianRed);
             }
 
+            //Creates a block looking like this
+            //      *
+            //      * *
+            //        *
+            else if (blockType == 4)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Green);
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.Green);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 20), Color.Green);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 40), Color.Green);
+            }
+
             // Creates the block from the grid itself. (greyBlock) This block is used in tandem
             // with the clearing of the rows
             else if (blockColor == -21)
@@ -135,29 +152,35 @@ namespace TetrisJFR_GitHub
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.White);
             }
 
-            // Creates a MediumPurple 1x1 block
+            // Creates a MediumPurple block
             else if (blockColor == 0)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.MediumPurple);
             }
 
-            // Creates a Yellow 1x1 block
+            // Creates a Yellow block
             else if (blockColor == 3)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Yellow);
             }
 
-            // Creates Red 1x1 block
+            // Creates Red block
             else if (blockColor == 1)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Red);
             }
 
+            //Creates an Indian red block
             else if ( blockColor == 2)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.IndianRed);
             }
 
+            //Creates a Green block
+            else if (blockColor == 4)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Green);
+            }
             spriteBatch.End();
 
 

@@ -184,7 +184,17 @@ namespace TetrisJFR_GitHub
                         xBoard2 = 5;
                         xBoard3 = 6;
                     }
+                    // Reset coordinates to match 3x1 vertical "- - -" shape
+                    else if (blockType == 2)
+                    {
+                        yBoard = 0;
+                        yBoard2 = 1;
+                        yBoard3 = 2;
 
+                        xBoard = 4;
+                        xBoard2 = 4;
+                        xBoard3 = 4;
+                    }
                     // Reset coordinates to match 3x2 "L" shape
                     else if (blockType == 3)
                     {
@@ -198,20 +208,18 @@ namespace TetrisJFR_GitHub
                         xBoard3 = 4;
                         xBoard4 = 5;
                     }
-
-                    // Reset coordinates to match 3x1 vertical "- - -" shape
-                    else if (blockType == 2)
+                    else if (blockType == 4)
                     {
                         yBoard = 0;
                         yBoard2 = 1;
-                        yBoard3 = 2;
+                        yBoard3 = 1;
+                        yBoard4 = 2;
 
                         xBoard = 4;
                         xBoard2 = 4;
-                        xBoard3 = 4;
+                        xBoard3 = 5;
+                        xBoard4 = 5;
                     }
-
-
                 }
 
                 spriteBatch.End();

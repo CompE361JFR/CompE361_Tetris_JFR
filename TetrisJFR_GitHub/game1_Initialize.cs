@@ -43,7 +43,29 @@ namespace TetrisJFR_GitHub
                 yBoard = 0;          // Looks like this
                 xBoard = 4;          // *
             }
+            else if (blockType == 1)
+            {
+                // 1x3 "---" Block // BlockType = 1 //
+                yBoard = 0;
+                yBoard2 = 0;        // Looks like this
+                yBoard3 = 0;        // * * *
 
+                xBoard = 4;
+                xBoard2 = 5;
+                xBoard3 = 6;
+
+            }
+            else if (blockType == 2)
+            {
+                // 3x1 block, the vertical version of " - - - " Block // BlockType = 2 //
+                yBoard = 0;
+                yBoard2 = 1;
+                yBoard3 = 2;
+
+                xBoard = 4;
+                xBoard2 = 4;
+                xBoard3 = 4;
+            }
             else if (blockType == 3)
             {
                 // 3x2 "L" Block // BlockType = 3 // 
@@ -57,31 +79,20 @@ namespace TetrisJFR_GitHub
                 xBoard3 = 4;
                 xBoard4 = 5;
             }
-
-            else if (blockType == 1)
+            else if (blockType == 4)
             {
-                // 1x3 "---" Block // BlockType = 1 //
-                yBoard = 0;
-                yBoard2 = 0;        // Looks like this
-                yBoard3 = 0;        // * * *
-
-                xBoard = 4;
-                xBoard2 = 5;
-                xBoard3 = 6;
-
-            }
-
-            else if (blockType == 2)
-            {
-                // 3x1 block, the vertical version of " - - - " Block // BlockType = 2 //
-                yBoard = 0;
-                yBoard2 = 1;
-                yBoard3 = 2;
+                //Vertical Z block
+                yBoard = 0;     //Looks like this
+                yBoard2 = 1;    //  *
+                yBoard3 = 1;    //  * *
+                yBoard4 = 2;    //    *
 
                 xBoard = 4;
                 xBoard2 = 4;
-                xBoard3 = 4;
+                xBoard3 = 5;
+                xBoard4 = 5;
             }
+
 
             base.Initialize();
 
