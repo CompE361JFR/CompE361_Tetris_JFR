@@ -105,4 +105,8 @@ that. I'll be doing this tomorrow
   "P". I also fixed the bug of the blocks to not go through other blocks whenever they move left or right. There are still
   bugs in the game that I need to fix but I will be doing so another day. I will also be adding a new block soon.
   
+(Jayson)
+- Today (Wednesday), I began work on the high score mechanic and a restart after game-over should the player want to play again. Both are still
+  unfinished, as they are directly connected together.
+  
 */
