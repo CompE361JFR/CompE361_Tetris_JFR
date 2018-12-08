@@ -111,5 +111,10 @@ that. I'll be doing this tomorrow
 - I originally wanted to implement the high scores by writing/reading them from a text file, but I ran into difficulties with access
   permissions on the file. The program apparently does not have access to the text file (regardless of where I put it). For now I have
   settled with using a list collection class.
-  
+----------------------------------------------------------------------------------------------------------------------------------------
+12/6/18
+
+(Jayson)
+- I spent my free time trying to debugging the reset and high score feature in my local repository/clone.
+----------------------------------------------------------------------------------------------------------------------------------------
 */
