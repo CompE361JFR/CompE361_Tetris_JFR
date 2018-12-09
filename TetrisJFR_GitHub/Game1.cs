@@ -578,125 +578,79 @@ namespace TetrisJFR_GitHub
             {
                 if (blockType == 0)
                 {
-                    if (currentBlock.y >= 380)
-                    {
-                        return false;
-                    }
-
-                    // Row -> column notation //
-                    else if (digitalBoard[yBoard + 1, xBoard] == 0)
-                    {
-                        return false;
-                    }
-
-                    else if (digitalBoard[yBoard + 1, xBoard] == 1)
+                   if (digitalBoard[yBoard + 1, xBoard] == 1)
                     {
                         return true;
+                    }
+                   else
+                    {
+                        return false;
                     }
                 }
                 else if (blockType == 1)
                 {
-                    if (currentBlock.y >= 380)
-                    {
-                        return false;
-                    }
-                    // Row -> column notation
-                    else if (digitalBoard[yBoard + 1, xBoard] == 0
-                        && digitalBoard[yBoard2 + 1, xBoard2] == 0
-                        && digitalBoard[yBoard3 + 1, xBoard3] == 0)
-                    {
-                        return false;
-                    }
-
-                    else if (digitalBoard[yBoard + 1, xBoard] == 1
+                    if (digitalBoard[yBoard + 1, xBoard] == 1
                         || digitalBoard[yBoard2 + 1, xBoard2] == 1
                         || digitalBoard[yBoard3 + 1, xBoard3] == 1)
                     {
                         return true;
                     }
+                    else
+                    {
+                        return false;
+                    }
                 }
 
                 else if (blockType == 2)
                 {
-                    if (currentBlock.y >= 380)
-                    {
-                        return false;
-                    }
-
-                    // Row -> column notation
-                    else if (digitalBoard[yBoard + 1, xBoard] == 0
-                        && digitalBoard[yBoard2 + 1, xBoard2] == 0
-                        && digitalBoard[yBoard3 + 1, xBoard3] == 0)
-                    {
-                        return false;
-                    }
-
-                    else if (digitalBoard[yBoard3 + 1, xBoard3] == 1)
+                    if (digitalBoard[yBoard3 + 1, xBoard3] == 1)
                     {
                         return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
 
                 }
                 else if (blockType == 3)
                 {
-                    if (currentBlock.y >= 380)
-                    {
-                        return false;
-                    }
-
-
-                    // Row -> column notation
-                    else if (digitalBoard[yBoard + 1, xBoard] == 0
-                        && digitalBoard[yBoard2 + 1, xBoard2] == 0
-                        && digitalBoard[yBoard3 + 1, xBoard3] == 0
-                        && digitalBoard[yBoard4 + 1, xBoard4] == 0)
-                    {
-                        return false;
-                    }
-
-                    else if (digitalBoard[yBoard3 + 1, xBoard3] == 1
+                    if (digitalBoard[yBoard3 + 1, xBoard3] == 1
                         || digitalBoard[yBoard4 + 1, xBoard4] == 1)
                     {
                         return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
                 else if (blockType == 4)
                 {
-                    if (currentBlock.y >= 380)
-                    {
-                        return false;
-                    }
-                    else if (digitalBoard[yBoard + 1, xBoard] == 0
-                        && digitalBoard[yBoard2 + 1, xBoard2] == 0
-                        && digitalBoard[yBoard3 + 1, xBoard3] == 0
-                        && digitalBoard[yBoard4 + 1, xBoard4] == 0)
-                    {
-                        return false;
-                    }
-                    else if (digitalBoard[yBoard2 + 1, xBoard2] == 1
+                    if (digitalBoard[yBoard2 + 1, xBoard2] == 1
                         || digitalBoard[yBoard4 + 1, xBoard4] == 1)
                     {
                         return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
                 else if (blockType == 5)
                 {
-                    if(currentBlock.y >= 380)
-                    {
-                        return false;
-                    }
-                    else if(digitalBoard[yBoard3 + 1, xBoard3] == 0
-                        || digitalBoard[yBoard4 + 1, xBoard4] == 0)
-                    {
-                        return false;
-                    }
-                    else if(digitalBoard[yBoard3 + 1, xBoard3] == 1
+                    if (digitalBoard[yBoard3 + 1, xBoard3] == 1
                         || digitalBoard[yBoard4 + 1, xBoard4] == 1)
                     {
                         return true;
                     }
+                    else
+                    {
+                        return false;
+                    }
 
                 }
+
             }
             catch
             {
@@ -724,15 +678,16 @@ namespace TetrisJFR_GitHub
              
             */
             Random RNG = new Random();
-            int randomNumber = RNG.Next(0, 4);
+            int randomNumber = RNG.Next(0, 6);
 
             while (randomNumber != 0 
                 && randomNumber != 1
                 && randomNumber != 2 
                 && randomNumber != 3
-                && randomNumber != 4)
+                && randomNumber != 4
+                && randomNumber != 5)
             {
-                randomNumber = RNG.Next(0, 4);
+                randomNumber = RNG.Next(0, 6);
             }
 
             return randomNumber;
