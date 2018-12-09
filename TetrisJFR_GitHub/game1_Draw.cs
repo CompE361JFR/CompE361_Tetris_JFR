@@ -237,6 +237,9 @@ namespace TetrisJFR_GitHub
                         xBoard3 = 4;
                         xBoard4 = 5;
                     }
+                    //Reset coordinates for *
+                    //                      * *
+                    //                        *
                     else if (blockType == 4)
                     {
                         yBoard = 0;
@@ -249,6 +252,20 @@ namespace TetrisJFR_GitHub
                         xBoard3 = 5;
                         xBoard4 = 5;
                     }
+                    //Reset coordinates for the 2x2 block
+                    else if (blockType == 5)
+                    {
+                        yBoard = 0;     //Looks like this
+                        yBoard2 = 0;    //  * *
+                        yBoard3 = 1;    //  * *
+                        yBoard4 = 1;
+
+                        xBoard = 4;
+                        xBoard2 = 5;
+                        xBoard3 = 4;
+                        xBoard4 = 5;
+                    }
+
                 }
 
                 spriteBatch.End();

@@ -346,6 +346,21 @@ namespace TetrisJFR_GitHub
                         xBoard4 -= 1;
                     }
                 }
+                else if(blockType == 5 && pauseFlag == 0)
+                {
+                    if (currentBlock.x - 20 <= -1
+                        || digitalBoard[yBoard, xBoard - 1] == 1
+                        || digitalBoard[yBoard3, xBoard3 - 1] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.x -= 20;
+                        xBoard -= 1;
+                        xBoard2 -= 1;
+                        xBoard3 -= 1;
+                        xBoard4 -= 1;
+                    }
+                }
             }
 
 
@@ -422,6 +437,21 @@ namespace TetrisJFR_GitHub
                     if (xBoard + 2 >= 10
                         || digitalBoard[yBoard, xBoard + 1] == 1
                         || digitalBoard[yBoard3, xBoard3 + 1] == 1
+                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.x += 20;
+                        xBoard += 1;
+                        xBoard2 += 1;
+                        xBoard3 += 1;
+                        xBoard4 += 1;
+                    }
+                }
+                else if (blockType == 5 && pauseFlag == 0)
+                {
+                    if (xBoard + 2 >= 10
+                        || digitalBoard[yBoard2, xBoard2 + 1] == 1
                         || digitalBoard[yBoard4, xBoard4 + 1] == 1)
                     { }
                     else
@@ -511,6 +541,21 @@ namespace TetrisJFR_GitHub
                         yBoard4 += 1;
                     }
                 }
+                else if (blockType == 5 && pauseFlag == 0)
+                {
+                    if(currentBlock.y + 40 >= 380
+                        || digitalBoard[yBoard3 + 2, xBoard3] == 1
+                        || digitalBoard[yBoard4 + 2, xBoard4] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.y += 20;
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                        yBoard4 += 1;
+                    }
+                }
             }
 
         //I'll clean up the stupid errors another day
@@ -519,6 +564,8 @@ namespace TetrisJFR_GitHub
                 && (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D))
                 && (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M)))
             { }
+
+            else {}
 
             oldState = newState;
 
@@ -584,9 +631,7 @@ namespace TetrisJFR_GitHub
                         return false;
                     }
 
-                    else if (digitalBoard[yBoard + 1, xBoard] == 1
-                        || digitalBoard[yBoard2 + 1, xBoard2] == 1
-                        || digitalBoard[yBoard3 + 1, xBoard3] == 1)
+                    else if (digitalBoard[yBoard3 + 1, xBoard3] == 1)
                     {
                         return true;
                     }
@@ -609,9 +654,7 @@ namespace TetrisJFR_GitHub
                         return false;
                     }
 
-                    else if (digitalBoard[yBoard + 1, xBoard] == 1
-                        || digitalBoard[yBoard2 + 1, xBoard2] == 1
-                        || digitalBoard[yBoard3 + 1, xBoard3] == 1
+                    else if (digitalBoard[yBoard3 + 1, xBoard3] == 1
                         || digitalBoard[yBoard4 + 1, xBoard4] == 1)
                     {
                         return true;
@@ -630,13 +673,29 @@ namespace TetrisJFR_GitHub
                     {
                         return false;
                     }
-                    else if (digitalBoard[yBoard + 1, xBoard] == 1
-                        && digitalBoard[yBoard2 + 1, xBoard2] == 1
-                        && digitalBoard[yBoard3 + 1, xBoard3] == 1
-                        && digitalBoard[yBoard4 + 1, xBoard4] == 1)
+                    else if (digitalBoard[yBoard2 + 1, xBoard2] == 1
+                        || digitalBoard[yBoard4 + 1, xBoard4] == 1)
                     {
                         return true;
                     }
+                }
+                else if (blockType == 5)
+                {
+                    if(currentBlock.y >= 380)
+                    {
+                        return false;
+                    }
+                    else if(digitalBoard[yBoard3 + 1, xBoard3] == 0
+                        || digitalBoard[yBoard4 + 1, xBoard4] == 0)
+                    {
+                        return false;
+                    }
+                    else if(digitalBoard[yBoard3 + 1, xBoard3] == 1
+                        || digitalBoard[yBoard4 + 1, xBoard4] == 1)
+                    {
+                        return true;
+                    }
+
                 }
             }
             catch

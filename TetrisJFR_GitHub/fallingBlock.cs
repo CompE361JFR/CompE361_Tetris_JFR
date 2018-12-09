@@ -145,6 +145,17 @@ namespace TetrisJFR_GitHub
                 spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 40), Color.Green);
             }
 
+            //Creates a block looking like this
+            //  * *
+            //  * *
+            else if(blockType == 5)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Orange);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y), Color.Orange);
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.Orange);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 20), Color.Orange);
+            }
+
             // Creates the block from the grid itself. (greyBlock) This block is used in tandem
             // with the clearing of the rows
             else if (blockColor == -21)
@@ -180,6 +191,12 @@ namespace TetrisJFR_GitHub
             else if (blockColor == 4)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Green);
+            }
+
+            //Creates an Orange block
+            else if (blockColor == 5)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Orange);
             }
             spriteBatch.End();
 

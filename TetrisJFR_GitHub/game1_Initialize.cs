@@ -91,6 +91,19 @@ namespace TetrisJFR_GitHub
                 xBoard3 = 5;
                 xBoard4 = 5;
             }
+            else if (blockType == 5)
+            {
+                yBoard = 0;     //Looks like this
+                yBoard2 = 0;    //  * *
+                yBoard3 = 1;    //  * *
+                yBoard4 = 1;
+
+                xBoard = 4;
+                xBoard2 = 5;
+                xBoard3 = 4;
+                xBoard4 = 5;
+            }
+
 
 
             base.Initialize();
