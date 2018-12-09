@@ -122,3 +122,11 @@ that. I'll be doing this tomorrow
 12/8/18
 (Fate)
  - Today, I will be creaing a 2x2 block and I will be fixixng the small errors again.
+ - I finished creating the new orange 2x2 block, and I will be creating a new block soon which is the rotated version of the green block.
+ which would look like this:
+    * *
+  * *
+  - There was a glitch in our game where whenever a block is near another block beneath it, and when the block is right on top of
+  another block and the user would still keep moving left/right, the top block would go through the block below. I have fixed 
+  that glitch where the user can keep moving left/right even if the block is right on top of another block without letting it
+  go through the bottom block.
