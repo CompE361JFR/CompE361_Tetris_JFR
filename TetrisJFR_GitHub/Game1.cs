@@ -498,7 +498,7 @@ namespace TetrisJFR_GitHub
                 }
                 else if (blockType == 2 && pauseFlag == 0)
                 {
-                    if (currentBlock.y + 40 >= 380
+                    if (currentBlock.y + 60 >= 380
                         || digitalBoard[yBoard3 + 2, xBoard] == 1)
                     { }
                     else
