@@ -130,3 +130,4 @@ that. I'll be doing this tomorrow
   another block and the user would still keep moving left/right, the top block would go through the block below. I have fixed 
   that glitch where the user can keep moving left/right even if the block is right on top of another block without letting it
   go through the bottom block.
+  - The last bug for the game is just the L block, I will be fixing that soon
