@@ -116,9 +116,8 @@ that. I'll be doing this tomorrow
 
 (Jayson)
 - I spent my free time trying to debugging the reset and high score feature in my local repository/clone.
-----------------------------------------------------------------------------------------------------------------------------------------
-*/
 
+----------------------------------------------------------------------------------------------------------------------------------------
 12/8/18
 (Fate)
  - Today, I will be creaing a 2x2 block and I will be fixixng the small errors again.
@@ -131,3 +130,14 @@ that. I'll be doing this tomorrow
   that glitch where the user can keep moving left/right even if the block is right on top of another block without letting it
   go through the bottom block.
   - The last bug for the game is just the L block, I will be fixing that soon
+
+----------------------------------------------------------------------------------------------------------------------------------------
+12/9/18
+(Jayson)
+- I spent some time continuing to debug the highscore feature. I think the issue is that it populates the highscore list infinitely
+  until the game over flag is turned to false, which leads to the printed highscore board to have the same highscore printed in all the
+  positions. Currently still working on it in my clone of the master branch and I will hopefully push my changes when it's properly
+  debugged.
+  
+----------------------------------------------------------------------------------------------------------------------------------------
+
