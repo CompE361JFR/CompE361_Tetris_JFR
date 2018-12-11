@@ -94,13 +94,7 @@ namespace TetrisJFR_GitHub
         int yBoard3;
         int yBoard4;
 
-
         int blockType = 3; // initialize the first object to spawn for testing purposes
-
-
-
-
-
 
         // 20 rows, 10 columns
         int[,] digitalBoard = new int[20, 10]
@@ -152,8 +146,6 @@ namespace TetrisJFR_GitHub
                 {-21, -21, -21, -21, -21, -21, -21, -21, -21, -21 }, //19
                 {-21, -21, -21, -21, -21, -21, -21, -21, -21, -21 },  //20th row
         };
-
-
 
         int[,] locationYArray = new int[20, 10]
         {                  //x <-- start here
@@ -215,23 +207,6 @@ namespace TetrisJFR_GitHub
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
-
-
-
-
-
-
-
-
-        // unloadContent was here before
-
-
-        // Update() was here before
-
-
-
-        // Draw was here before.
 
         void KeyboardHandler()
         {
@@ -368,6 +343,52 @@ namespace TetrisJFR_GitHub
                         xBoard4 -= 1;
                     }
                 }
+                else if (blockType == 6 && pauseFlag == 0)
+                {
+                    if (currentBlock.x - 20 <= -1
+                        || digitalBoard[yBoard, xBoard - 1] == 1
+                        || digitalBoard[yBoard3, xBoard3 - 1] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.x -= 20;
+                        xBoard -= 1;
+                        xBoard2 -= 1;
+                        xBoard3 -= 1;
+                        xBoard4 -= 1;
+                    }
+                }
+                else if (blockType == 7 && pauseFlag == 0)
+                {
+                    if (currentBlock.x - 20 <= -1
+                        || digitalBoard[yBoard, xBoard - 1] == 1
+                        || digitalBoard[yBoard3, xBoard3 - 1] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.x -= 20;
+                        xBoard -= 1;
+                        xBoard2 -= 1;
+                        xBoard3 -= 1;
+                        xBoard4 -= 1;
+                    }
+                }
+                else if (blockType == 8 && pauseFlag == 0)
+                {
+                    if (currentBlock.x - 20 <= -1
+                        || digitalBoard[yBoard, xBoard - 1] == 1
+                        || digitalBoard[yBoard2, xBoard2 - 1] == 1
+                        || digitalBoard[yBoard4, xBoard4 - 1] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.x -= 20;
+                        xBoard -= 1;
+                        xBoard2 -= 1;
+                        xBoard3 -= 1;
+                        xBoard4 -= 1;
+                    }
+                }
             }
 
 
@@ -459,6 +480,52 @@ namespace TetrisJFR_GitHub
                 {
                     if (xBoard + 2 >= 10
                         || digitalBoard[yBoard2, xBoard2 + 1] == 1
+                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.x += 20;
+                        xBoard += 1;
+                        xBoard2 += 1;
+                        xBoard3 += 1;
+                        xBoard4 += 1;
+                    }
+                }
+                else if (blockType == 6 && pauseFlag == 0)
+                {
+                    if (xBoard + 3 >= 10
+                        || digitalBoard[yBoard2, xBoard2 + 1] == 1
+                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.x += 20;
+                        xBoard += 1;
+                        xBoard2 += 1;
+                        xBoard3 += 1;
+                        xBoard4 += 1;
+                    }
+                }
+                else if (blockType == 7 && pauseFlag == 0)
+                {
+                    if (xBoard + 3 >= 10
+                        || digitalBoard[yBoard2, xBoard2 + 1] == 1
+                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.x += 20;
+                        xBoard += 1;
+                        xBoard2 += 1;
+                        xBoard3 += 1;
+                        xBoard4 += 1;
+                    }
+                }
+                else if (blockType == 8 && pauseFlag == 0)
+                {
+                    if (xBoard + 2 >= 10
+                        || digitalBoard[yBoard, xBoard + 1] == 1
+                        || digitalBoard[yBoard3, xBoard3 + 1] == 1
                         || digitalBoard[yBoard4, xBoard4 + 1] == 1)
                     { }
                     else
@@ -563,13 +630,60 @@ namespace TetrisJFR_GitHub
                         yBoard4 += 1;
                     }
                 }
+                else if (blockType == 6 && pauseFlag == 0)
+                {
+                    if (currentBlock.y + 40 >= 380
+                        || digitalBoard[yBoard + 2, xBoard] == 1
+                        || digitalBoard[yBoard2 + 2, xBoard2] == 1
+                        || digitalBoard[yBoard4 + 2, xBoard4] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.y += 20;
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                        yBoard4 += 1;
+                    }
+                }
+                else if (blockType == 7 && pauseFlag == 0)
+                {
+                    if (currentBlock.y + 40 >= 380
+                        || digitalBoard[yBoard + 2, xBoard] == 1
+                        || digitalBoard[yBoard3 + 2, xBoard3] == 1
+                        || digitalBoard[yBoard4 + 2, xBoard4] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.y += 20;
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                        yBoard4 += 1;
+                    }
+                }
+                else if (blockType == 8 && pauseFlag == 0)
+                {
+                    if (currentBlock.y + 40 >= 380
+                        || digitalBoard[yBoard + 2, xBoard] == 1
+                        || digitalBoard[yBoard3 + 2, xBoard3] == 1)
+                    { }
+                    else
+                    {
+                        currentBlock.y += 20;
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                        yBoard4 += 1;
+                    }
+                }
             }
 
         //I'll clean up the stupid errors another day
         else if((oldState.IsKeyUp(Keys.P) && newState.IsKeyDown(Keys.P))
-                && (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A))
-                && (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D))
-                && (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M)))
+                || (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A))
+                || (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D))
+                || (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M)))
             { }
 
             else {}
@@ -657,7 +771,47 @@ namespace TetrisJFR_GitHub
                     }
 
                 }
+                else if (blockType == 6)
+                {
+                    if (digitalBoard[yBoard + 1, xBoard] == 1
+                        || digitalBoard[yBoard2 + 1, xBoard2] == 1
+                        || digitalBoard[yBoard4 + 1, xBoard4] == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
 
+                }
+                else if (blockType == 7)
+                {
+                    if (digitalBoard[yBoard + 1, xBoard] == 1
+                        || digitalBoard[yBoard3 + 1, xBoard3] == 1
+                        || digitalBoard[yBoard4 + 1, xBoard4] == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else if (blockType == 8)
+                {
+                    if (digitalBoard[yBoard + 1, xBoard] == 1
+                        || digitalBoard[yBoard3 + 1, xBoard3] == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
             }
             catch
             {
@@ -685,16 +839,19 @@ namespace TetrisJFR_GitHub
              
             */
             Random RNG = new Random();
-            int randomNumber = RNG.Next(0, 6);
+            int randomNumber = RNG.Next(0, 9);
 
             while (randomNumber != 0 
                 && randomNumber != 1
                 && randomNumber != 2 
                 && randomNumber != 3
                 && randomNumber != 4
-                && randomNumber != 5)
+                && randomNumber != 5
+                && randomNumber != 6
+                && randomNumber != 7
+                && randomNumber != 8)
             {
-                randomNumber = RNG.Next(0, 6);
+                randomNumber = RNG.Next(0, 9);
             }
 
             return randomNumber;

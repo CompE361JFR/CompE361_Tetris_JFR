@@ -155,6 +155,39 @@ namespace TetrisJFR_GitHub
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.Orange);
                 spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 20), Color.Orange);
             }
+            //Creates a block looking like this
+            //    * *
+            //  * *
+            else if(blockType == 6)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y), Color.LightSeaGreen);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 40, y), Color.LightSeaGreen);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 20), Color.LightSeaGreen);
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.LightSeaGreen);
+            }
+
+            //Creates a block looking like this
+            // * *
+            //   * *
+            else if (blockType == 7)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.LimeGreen);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y), Color.LimeGreen);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 20), Color.LimeGreen);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 40, y + 20), Color.LimeGreen);
+            }
+
+            //Creates a block looking like this
+            //        *
+            //      * *
+            //      *
+            else if (blockType == 8)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y), Color.YellowGreen);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 20), Color.YellowGreen);
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.YellowGreen);
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 40), Color.YellowGreen);
+            }
 
             // Creates the block from the grid itself. (greyBlock) This block is used in tandem
             // with the clearing of the rows
@@ -198,18 +231,32 @@ namespace TetrisJFR_GitHub
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Orange);
             }
+
+            //Creates Light Sea Green Block
+            else if(blockColor == 6)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.LightSeaGreen);
+            }
+            
+            //Creates Lime Green Block
+            else if(blockColor == 7)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.LimeGreen);
+            }
+
+             // Creates Yellow Green Block
+             else if(blockColor == 8)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.YellowGreen);
+            }
+
             spriteBatch.End();
-
-
             base.Draw(gameTime);
-
         }
 
         public void changeY()
         {
             this.y = globalVariable;
         }
-
-
     }
 }

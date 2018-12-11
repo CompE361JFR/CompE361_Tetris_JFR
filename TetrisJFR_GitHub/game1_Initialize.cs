@@ -103,12 +103,46 @@ namespace TetrisJFR_GitHub
                 xBoard3 = 4;
                 xBoard4 = 5;
             }
+            else if(blockType == 6)
+            {
+                yBoard = 1;     //Looks like this
+                yBoard2 = 1;    //    * *
+                yBoard3 = 0;    //  * *
+                yBoard4 = 0;
 
+                xBoard = 4;
+                xBoard2 = 5;
+                xBoard3 = 5;
+                xBoard4 = 6;
+            }
+            else if (blockType == 7)
+            {          
+                yBoard = 0;     //Looks like this
+                yBoard2 = 0;    //  * *
+                yBoard3 = 1;    //    * *
+                yBoard4 = 1;
+
+                xBoard = 4;
+                xBoard2 = 5;
+                xBoard3 = 5;
+                xBoard4 = 6;
+            }
+            else if (blockType == 8)
+            {
+                //Vertical Z block
+                yBoard = 2;     //Looks like this
+                yBoard2 = 1;    //    *
+                yBoard3 = 1;    //  * *
+                yBoard4 = 0;    //  *
+
+                xBoard = 4;
+                xBoard2 = 4;
+                xBoard3 = 5;
+                xBoard4 = 5;
+            }
 
 
             base.Initialize();
-
-
         }
     }
 }

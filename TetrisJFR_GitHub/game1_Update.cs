@@ -503,9 +503,239 @@ namespace TetrisJFR_GitHub
 
                         }
                     }
+                    else if (blockType == 6)
+                    {
+                        currentBlock.y += 20;
 
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                        yBoard4 += 1;
+
+                        // This if statement used to prevent any out-of-bounds errors
+                        if (yBoard == 20)
+                        {
+                            yBoard--;
+                        }
+
+                        // if you reach the bottom, stop here and change the board array
+                        if (currentBlock.y >= 380)
+                        {
+
+                            // Row -> Column notation //
+
+                            //Populate the digitalBoard
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+                            digitalBoard[yBoard4, xBoard4] = 1;
+
+                            //Populate the blockColorArray
+                            blockColorArray[yBoard, xBoard] = 6;
+                            blockColorArray[yBoard2, xBoard2] = 6;
+                            blockColorArray[yBoard3, xBoard3] = 6;
+                            blockColorArray[yBoard4, xBoard4] = 6;
+
+                            // Reset the board coordinates
+                            yBoard = 1;     //Looks like this
+                            yBoard2 = 1;    //    * *
+                            yBoard3 = 0;    //  * *
+                            yBoard4 = 0;
+
+                            xBoard = 4;
+                            xBoard2 = 5;
+                            xBoard3 = 5;
+                            xBoard4 = 6;
+
+                            // Used for generating a new block
+                            generateNewObject = 1;
+
+                        }
+
+                        else if (isNextSpotFilled())
+                        {
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+                            digitalBoard[yBoard4, xBoard4] = 1;
+
+                            blockColorArray[yBoard, xBoard] = 6;
+                            blockColorArray[yBoard2, xBoard2] = 6;
+                            blockColorArray[yBoard3, xBoard3] = 6;
+                            blockColorArray[yBoard4, xBoard4] = 6;
+
+                            //Reset board coordinates
+                            yBoard = 1;     //Looks like this
+                            yBoard2 = 1;    //    * *
+                            yBoard3 = 0;    //  * *
+                            yBoard4 = 0;
+
+                            xBoard = 4;
+                            xBoard2 = 5;
+                            xBoard3 = 5;
+                            xBoard4 = 6;
+
+                            // Used for generating a new block
+                            generateNewObject = 1;
+
+                        }
+                    }
+                    else if (blockType == 7)
+                    {
+                        currentBlock.y += 20;
+
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                        yBoard4 += 1;
+
+                        // This if statement used to prevent any out-of-bounds errors
+                        if (yBoard == 20)
+                        {
+                            yBoard--;
+                        }
+
+                        // if you reach the bottom, stop here and change the board array
+                        if (currentBlock.y >= 380)
+                        {
+
+                            // Row -> Column notation //
+
+                            //Populate the digitalBoard
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+                            digitalBoard[yBoard4, xBoard4] = 1;
+
+                            //Populate the blockColorArray
+                            blockColorArray[yBoard, xBoard] = 7;
+                            blockColorArray[yBoard2, xBoard2] = 7;
+                            blockColorArray[yBoard3, xBoard3] = 7;
+                            blockColorArray[yBoard4, xBoard4] = 7;
+
+                            // Reset the board coordinates
+                            yBoard = 0;     //Looks like this
+                            yBoard2 = 0;    //  * *
+                            yBoard3 = 1;    //    * *
+                            yBoard4 = 1;
+
+                            xBoard = 4;
+                            xBoard2 = 5;
+                            xBoard3 = 5;
+                            xBoard4 = 6;
+
+                            // Used for generating a new block
+                            generateNewObject = 1;
+
+                        }
+
+                        else if (isNextSpotFilled())
+                        {
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+                            digitalBoard[yBoard4, xBoard4] = 1;
+
+                            blockColorArray[yBoard, xBoard] = 7;
+                            blockColorArray[yBoard2, xBoard2] = 7;
+                            blockColorArray[yBoard3, xBoard3] = 7;
+                            blockColorArray[yBoard4, xBoard4] = 7;
+
+                            // Reset the board coordinates
+                            yBoard = 0;     //Looks like this
+                            yBoard2 = 0;    //  * *
+                            yBoard3 = 1;    //    * *
+                            yBoard4 = 1;
+
+                            xBoard = 4;
+                            xBoard2 = 5;
+                            xBoard3 = 5;
+                            xBoard4 = 6;
+
+                            // Used for generating a new block
+                            generateNewObject = 1;
+
+                        }
+                    }
+                    else if (blockType == 8)
+                    {
+                        currentBlock.y += 20;
+
+                        yBoard += 1;
+                        yBoard2 += 1;
+                        yBoard3 += 1;
+                        yBoard4 += 1;
+
+                        // This if statement used to prevent any out-of-bounds errors
+                        if (yBoard == 20)
+                        {
+                            yBoard--;
+                        }
+
+                        // if you reach the bottom, stop here and change the board array
+                        if (currentBlock.y >= 380)
+                        {
+
+                            // Row -> Column notation //
+
+                            //Populate the digitalBoard
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+                            digitalBoard[yBoard4, xBoard4] = 1;
+
+                            //Populate the blockColorArray
+                            blockColorArray[yBoard, xBoard] = 8;
+                            blockColorArray[yBoard2, xBoard2] = 8;
+                            blockColorArray[yBoard3, xBoard3] = 8;
+                            blockColorArray[yBoard4, xBoard4] = 8;
+
+                            // Reset the board coordinates
+                            //Vertical Z block
+                            yBoard = 2;     //Looks like this
+                            yBoard2 = 1;    //    *
+                            yBoard3 = 1;    //  * *
+                            yBoard4 = 0;    //  *
+
+                            xBoard = 4;
+                            xBoard2 = 4;
+                            xBoard3 = 5;
+                            xBoard4 = 5;
+
+                            // Used for generating a new block
+                            generateNewObject = 1;
+
+                        }
+
+                        else if (isNextSpotFilled())
+                        {
+                            digitalBoard[yBoard, xBoard] = 1;
+                            digitalBoard[yBoard2, xBoard2] = 1;
+                            digitalBoard[yBoard3, xBoard3] = 1;
+                            digitalBoard[yBoard4, xBoard4] = 1;
+
+                            blockColorArray[yBoard, xBoard] = 8;
+                            blockColorArray[yBoard2, xBoard2] = 8;
+                            blockColorArray[yBoard3, xBoard3] = 8;
+                            blockColorArray[yBoard4, xBoard4] = 8;
+
+                            //Vertical Z block
+                            yBoard = 2;     //Looks like this
+                            yBoard2 = 1;    //    *
+                            yBoard3 = 1;    //  * *
+                            yBoard4 = 0;    //  *
+
+                            xBoard = 4;
+                            xBoard2 = 4;
+                            xBoard3 = 5;
+                            xBoard4 = 5;
+
+                            // Used for generating a new block
+                            generateNewObject = 1;
+
+                        }
+                    }
                 }
-
                 // Checking if the user fills the board up to the top row.
                 // If true, the game is over, so stop the game and print
                 // "Game Over"
@@ -517,9 +747,6 @@ namespace TetrisJFR_GitHub
                 {
                     gameOver = true;
                 }
-
-
-
                 base.Update(gameTime);
             }
         } // End of the Update function
