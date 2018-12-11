@@ -52,29 +52,54 @@ namespace TetrisJFR_GitHub
                  * 
                  *
                  */
-                
-                
-                    spriteBatch.DrawString(scoreText, "Highscores:", new Vector2(212, 80), Color.White);
-                    List<int> highscores = new List<int>() { 0, 0, 0 };
-                    highscores.Sort();
-                    highscores.Reverse(); //Sort method puts the smallest into index 0, but scores should be sorted the other way.
-                    int k;
-                    for (k = 0; k < 3; ++k) //Only show top 3 scores.
-                        spriteBatch.DrawString(scoreText, (k + 1) + ". " + highscores[k].ToString(), new Vector2(270, 120 + (40 * k)), Color.White);
-                
+
+
+                spriteBatch.DrawString(scoreText, "Highscores:", new Vector2(212, 80), Color.White);
+
+                for (int k = 0; k < 3; ++k)
+                {
+                    spriteBatch.DrawString(scoreText, (k + 1) + ". " + highscores[k].ToString(), new Vector2(270, 120 + (40 * k)), Color.White);
+                }
                 // Game Over text that spawns
                 if (gameOver == true)
                 {
-                    for (k = 0; k < 3; ++k) //Redraw the highscores in black so it dissapears.
+                    for (int k = 0; k < 3; ++k) //Redraw the highscores in blue so it dissapears.
+                    {
                         spriteBatch.DrawString(scoreText, (k + 1) + ". " + highscores[k].ToString(), new Vector2(270, 120 + (40 * k)), Color.CornflowerBlue);
+                    }
+
                     spriteBatch.DrawString(scoreText, "Game Over", new Vector2(200, 410), Color.Red);
                     spriteBatch.DrawString(scoreText, "Press R to restart.", new Vector2(200, 450), Color.Red);
-                    highscores.Add(score);
-                    highscores.Sort();
-                    highscores.Reverse();
-                    for (k = 0; k < 3; ++k) //Draw the updated highscores.
-                        spriteBatch.DrawString(scoreText, (k + 1) + ". " + highscores[k].ToString(), new Vector2(270, 120 + (40 * k)), Color.White);
 
+                    for (int k = 0; k < 3; ++k)
+                    {
+                        if (score == highscores[k] || scoreAlreadyAdded)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (k == 2 && score > highscores[k])
+                            {
+                                highscores[k] = score;
+                            }
+                            else if (highscores[k] > 0)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                highscores[k] = score;
+                                scoreAlreadyAdded = true;
+                            }
+                            highscores.Sort();
+                            highscores.Reverse();
+                        }
+                    }
+
+                    for (int k = 0; k < 3; ++k) //Draw the updated highscores.
+                        spriteBatch.DrawString(scoreText, (k + 1) + ". " + highscores[k].ToString(),
+                            new Vector2(270, 120 + (40 * k)), Color.White);
                 }
 
 

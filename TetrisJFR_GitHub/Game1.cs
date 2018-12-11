@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Threading;
 using System;
+using System.Collections.Generic;
 
 // This comment is to test the Commit /sync functions of the GitHub extension
 // on Visual Studio. -- Raven Tomas
@@ -72,7 +73,7 @@ namespace TetrisJFR_GitHub
         float countDuration = 1; // one second
         float currentTime = 0;
 
-        int score = 100;
+        int score = 0;
 
         /*
             When deleting blocks or clearing rows, have an array that has all the characteritics
@@ -202,6 +203,9 @@ namespace TetrisJFR_GitHub
                 {0, 20, 40, 60, 80, 100, 120, 140, 160, 180 }
         };
 
+        List<int> highscores = new List<int>() { 0, 0, 0 };
+        bool scoreAlreadyAdded = false;
+
         int generateNewObject = 0;
 
         bool gameOver = false;
@@ -243,7 +247,8 @@ namespace TetrisJFR_GitHub
             //The board does not reset.
             if (oldState.IsKeyUp(Keys.R) && newState.IsKeyDown(Keys.R) && gameOver == true)
             {
-                score = 100;
+                score = 0;
+                /*
                 int numRow = 20;
                 int l;
                 int p;
@@ -256,6 +261,8 @@ namespace TetrisJFR_GitHub
                         blockColorArray[l, p] = -21;
                     }
                 }
+                */
+                scoreAlreadyAdded = false;
                 gameOver = false;
             }
 
