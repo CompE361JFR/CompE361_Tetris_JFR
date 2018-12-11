@@ -163,5 +163,8 @@ that. I'll be doing this tomorrow
     NOTE - The row deletion function would sometimes work. Maybe because Fate added some more blocks, the code for the row deletion only 
     applied for the previous blocks instead of the new ones. I will debug this later today, or in the next couple days.
   
+  (Jayson)
+  - Fixed the bug where you can still move and hit pause when the game is over.
+  - Worked with Raven to debug the board not clearing when reset is pressed.
   
   
