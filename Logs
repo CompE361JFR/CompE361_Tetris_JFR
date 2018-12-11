@@ -149,3 +149,7 @@ that. I'll be doing this tomorrow
   session. If you close the game and open it again, you'll see that the highscore board is once again empty.
 - Next thing to work on is the restart feature. It is still unfinished and needs to be fully implemented and debugged. Currently the
   issue is that it is not clearing the board when "R" is pressed.
+  
+  (Fate)
+  - Today,  I added three new blocks, which is the rotation and flips of the block Z. I will adding a few more blocks soon and fix 
+  any more bugs. 
