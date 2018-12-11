@@ -123,6 +123,7 @@ namespace TetrisJFR_GitHub
                 */
                 spriteBatch.End();
 
+               
 
 
                 spriteBatch.Begin();
@@ -203,6 +204,51 @@ namespace TetrisJFR_GitHub
                 } // end of " for f " loop
 
                 spriteBatch.End();
+
+
+
+
+
+                // r changes 12/11/18
+                spriteBatch.Begin();
+
+                if (clearTheBoard == true)
+                {
+                    /*
+                    for (int j = 0; j <= 19; j++)
+                    {
+                        // Columns
+                        for (int i = 0; i <= 9; i++)
+                        {
+                            spriteBatch.Draw(blockForGrid, new Vector2(i * 20, j * 20), Color.White);
+                        }
+                    }
+                    */
+
+                    for (int j = 0; j < 20; j++) // j = row
+                    {
+                        for (int i = 0; i < 10; i++) // i = column
+                        {
+                            // Arrays follow the _array[row,column] notation
+                            // Constructor follows this _fallingBlock(this, blockColor, column, row)
+                            deleteBlock = new fallingBlock(this, -21, locationXArray[j, i], locationYArray[j, i]); // ERROROROROR HEREEEEE 380!!!!!!! I FIXED IT!!!! 12/1/18 4:24 PM
+                            Components.Add(deleteBlock);
+                            /*
+                            digitalBoard[j, i] = 0; // Reset that spot back to 0, indicating no 
+                                                      // block has been placed
+                            blockColorArray[j, i] = -21;
+                            */
+                        }
+                    }
+
+                    generateNewObject = 1;
+                    
+                    clearTheBoard = false;
+                }
+
+                spriteBatch.End();
+
+
 
                 // Generates a new block after placing the current Block. 
                 // This is drawn last so that it draws over other objects, so it
@@ -333,6 +379,12 @@ namespace TetrisJFR_GitHub
                 }
 
                 spriteBatch.End();
+
+
+
+                
+
+
                 base.Draw(gameTime);
             }
         }

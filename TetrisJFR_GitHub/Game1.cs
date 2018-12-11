@@ -201,6 +201,7 @@ namespace TetrisJFR_GitHub
         int generateNewObject = 0;
 
         bool gameOver = false;
+        bool clearTheBoard = false;
 
         public Game1()
         {
@@ -223,7 +224,8 @@ namespace TetrisJFR_GitHub
             if (oldState.IsKeyUp(Keys.R) && newState.IsKeyDown(Keys.R) && gameOver)
             {
                 score = 0;
-                /*
+                // r changes
+                
                 int numRow = 20;
                 int l;
                 int p;
@@ -236,9 +238,14 @@ namespace TetrisJFR_GitHub
                         blockColorArray[l, p] = -21;
                     }
                 }
-                */
+
+                clearTheBoard = true;
+
+                // end of r changes
                 scoreAlreadyAdded = false;
                 gameOver = false;
+
+
             }
 
             // Move Left
