@@ -140,4 +140,12 @@ that. I'll be doing this tomorrow
   debugged.
   
 ----------------------------------------------------------------------------------------------------------------------------------------
-
+12/10/18
+(Jayson)
+- I figured why it was continously adding the score in every list index. I needed more conditionals/checks and a flag to designate
+  if the score has already been added. This is required because the game is constantly updating itself every second, and so I needed to
+  stop the input-highscore code from running if already put the score in. Other checks were put in for typical score-setting situations.
+  It should now handle "normal" scores fine. One important thing to note is that it only saves the top three highscores in a current
+  session. If you close the game and open it again, you'll see that the highscore board is once again empty.
+- Next thing to work on is the restart feature. It is still unfinished and needs to be fully implemented and debugged. Currently the
+  issue is that it is not clearing the board when "R" is pressed.
