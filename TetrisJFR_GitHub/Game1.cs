@@ -213,14 +213,14 @@ namespace TetrisJFR_GitHub
             KeyboardState newState = Keyboard.GetState();
             //bool leftArrowKeyDown = state.IsKeyDown(Keys.Left);
 
-            if (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M))
+            if (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M) && !gameOver)
             {
                 pauseFlag ^= 1;
             }
 
             //Pressing R to restart should reset score and the board, but it currently does not work as intended.
             //The board does not reset.
-            if (oldState.IsKeyUp(Keys.R) && newState.IsKeyDown(Keys.R) && gameOver == true)
+            if (oldState.IsKeyUp(Keys.R) && newState.IsKeyDown(Keys.R) && gameOver)
             {
                 score = 0;
                 /*
@@ -242,7 +242,7 @@ namespace TetrisJFR_GitHub
             }
 
             // Move Left
-            if (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A))
+            if (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A) && !gameOver)
             {
                 if (blockType == 0 && pauseFlag == 0)
                 {
@@ -393,7 +393,7 @@ namespace TetrisJFR_GitHub
 
 
             // Move Right
-            else if (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D))
+            else if (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D) && !gameOver)
             {
                 if (blockType == 0 && pauseFlag == 0)
                 {
