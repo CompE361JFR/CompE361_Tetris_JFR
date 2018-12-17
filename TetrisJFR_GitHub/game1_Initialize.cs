@@ -140,8 +140,19 @@ namespace TetrisJFR_GitHub
                 xBoard3 = 5;
                 xBoard4 = 5;
             }
+            else if(blockType == 9)
+            {
+                //Upside down T
+                yBoard = 1;     //Looks like this
+                yBoard2 = 1;    //   *
+                yBoard3 = 0;    // * * *
+                yBoard4 = 1;
 
-
+                xBoard = 4;
+                xBoard2 = 5;
+                xBoard3 = 5;
+                xBoard4 = 6;
+            }             
             base.Initialize();
         }
     }

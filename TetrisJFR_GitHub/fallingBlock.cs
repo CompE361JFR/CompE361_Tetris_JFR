@@ -97,21 +97,6 @@ namespace TetrisJFR_GitHub
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.MediumPurple);
             }
 
-            // Creates a shape with four blocks
-            //  *
-            //  *
-            //  * *
-            else if (blockType == 3)
-            {
-
-
-                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Yellow);
-                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.Yellow);
-                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 40), Color.Yellow);
-                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 40), Color.Yellow);
-
-            }
-
             //creates shape of 3 blocks looking like
             // * * *
             else if (blockType == 1)
@@ -132,7 +117,20 @@ namespace TetrisJFR_GitHub
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.IndianRed);
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y + 40), Color.IndianRed);
             }
+            // Creates a shape with four blocks
+            //  *
+            //  *
+            //  * *
+            else if (blockType == 3)
+            {
 
+
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Yellow);
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.Yellow);
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 40), Color.Yellow);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 40), Color.Yellow);
+
+            }
             //Creates a block looking like this
             //      *
             //      * *
@@ -188,7 +186,17 @@ namespace TetrisJFR_GitHub
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.YellowGreen);
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y + 40), Color.YellowGreen);
             }
+            //Creates an upside-down T block looking like this
+            //    *
+            //  * * *
+            else if (blockType == 9)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y), Color.HotPink);
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y + 20), Color.HotPink);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 20, y + 20), Color.HotPink);
+                spriteBatch.Draw(droppingBlock, new Vector2(x + 40, y + 20), Color.HotPink);
 
+            }
             // Creates the block from the grid itself. (greyBlock) This block is used in tandem
             // with the clearing of the rows
             else if (blockColor == -21)
@@ -201,25 +209,21 @@ namespace TetrisJFR_GitHub
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.MediumPurple);
             }
-
-            // Creates a Yellow block
-            else if (blockColor == 3)
-            {
-                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Yellow);
-            }
-
             // Creates Red block
             else if (blockColor == 1)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Red);
             }
-
             //Creates an Indian red block
             else if ( blockColor == 2)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.IndianRed);
             }
-
+            // Creates a Yellow block
+            else if (blockColor == 3)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.Yellow);
+            }
             //Creates a Green block
             else if (blockColor == 4)
             {
@@ -249,7 +253,10 @@ namespace TetrisJFR_GitHub
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.YellowGreen);
             }
-
+            else if (blockColor == 9)
+            {
+                spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.HotPink);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }

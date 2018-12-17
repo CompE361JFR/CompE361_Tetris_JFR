@@ -9,10 +9,6 @@ namespace TetrisJFR_GitHub
 {
     public partial class Game1 : Game
     {
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             if (pauseFlag == 1)
@@ -24,10 +20,7 @@ namespace TetrisJFR_GitHub
             else
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
-
-                // TODO: Add your drawing code here
                 spriteBatch.Begin();
-
 
                 // Using two nested for loops allows us to create our 20 x 10 block grid.
                 // 20 x 10 = 20 rows and 10 columns
@@ -180,7 +173,9 @@ namespace TetrisJFR_GitHub
                                                               // block has been placed
 
                                 // Repopulating the digitalBoard
-                                if (blockColorArray[row, i] == 0 || blockColorArray[row, i] == 3 || blockColorArray[row, i] == 1 || blockColorArray[row, i] == 2)
+                                if (blockColorArray[row, i] == 0 || blockColorArray[row, i] == 3 || blockColorArray[row, i] == 1 || blockColorArray[row, i] == 2
+                                    || blockColorArray[row, i] == 4 || blockColorArray[row, i] == 5 || blockColorArray[row, i] == 6 
+                                    || blockColorArray[row, i] == 7 || blockColorArray[row, i] == 8 || blockColorArray[row, i] == 9)
                                 {
                                     digitalBoard[row, i] = 1;
                                 }
@@ -376,15 +371,21 @@ namespace TetrisJFR_GitHub
                         xBoard3 = 5;
                         xBoard4 = 5;
                     }
+                    else if (blockType == 9)
+                    {
+                        //Upside down T
+                        yBoard = 1;     //Looks like this
+                        yBoard2 = 1;    //   *
+                        yBoard3 = 0;    // * * *
+                        yBoard4 = 1;
+
+                        xBoard = 4;
+                        xBoard2 = 5;
+                        xBoard3 = 5;
+                        xBoard4 = 6;
+                    }
                 }
-
                 spriteBatch.End();
-
-
-
-                
-
-
                 base.Draw(gameTime);
             }
         }
