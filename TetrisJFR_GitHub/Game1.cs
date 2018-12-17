@@ -211,537 +211,536 @@ namespace TetrisJFR_GitHub
 
         void KeyboardHandler()
         {
-            KeyboardState newState = Keyboard.GetState();
-            //bool leftArrowKeyDown = state.IsKeyDown(Keys.Left);
-            if (oldState.IsKeyUp(Keys.Escape) && newState.IsKeyDown(Keys.Escape) && !gameOver)
-            {
-                Exit();
-            }
-            if (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M) && !gameOver)
-            {
-                pauseFlag ^= 1;
-            }
-
-            //Pressing R to restart should reset score and the board, but it currently does not work as intended.
-            //The board does not reset.
-            if (oldState.IsKeyUp(Keys.R) && newState.IsKeyDown(Keys.R) && gameOver)
-            {
-                score = 0;
-                // r changes
-                
-                int numRow = 20;
-                int l;
-                int p;
-                int numCol = 10;
-                for (l = 0; l < numRow; ++l)
+                KeyboardState newState = Keyboard.GetState();
+                //bool leftArrowKeyDown = state.IsKeyDown(Keys.Left);
+                if (oldState.IsKeyUp(Keys.Escape) && newState.IsKeyDown(Keys.Escape) && !gameOver)
                 {
-                    for (p = 0; p < numCol; ++p)
-                    {
-                        digitalBoard[l, p] = 0;
-                        blockColorArray[l, p] = -21;
-                    }
+                    Exit();
+                }
+                if (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M) && !gameOver)
+                {
+                    pauseFlag ^= 1;
                 }
 
-                clearTheBoard = true;
-
-                // end of r changes
-                scoreAlreadyAdded = false;
-                gameOver = false;
-
-
-            }
-
-            // Move Left
-            if (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A) && !gameOver)
-            {
-                if (blockType == 0 && pauseFlag == 0)
+                //Pressing R to restart: resets score and the board
+                if (oldState.IsKeyUp(Keys.R) && newState.IsKeyDown(Keys.R) && gameOver)
                 {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard - 1] == 1)
+                    score = 0;
+                    // r changes
+
+                    int numRow = 20;
+                    int l;
+                    int p;
+                    int numCol = 10;
+                    for (l = 0; l < numRow; ++l)
                     {
-                        // Dont move the object 
-                    }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                    }
-                }
-                else if (blockType == 1 && pauseFlag == 0)
-                {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard - 1] == 1)
-                    {
-                        // Dont move the object 
-                    }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                    }
-                }
-                else if (blockType == 2 && pauseFlag == 0)
-                {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard - 1] == 1
-                        || digitalBoard[yBoard2, xBoard - 1] == 1
-                        || digitalBoard[yBoard3, xBoard - 1] == 1)
-                    {
-                        // Dont move the object
+                        for (p = 0; p < numCol; ++p)
+                        {
+                            digitalBoard[l, p] = 0;
+                            blockColorArray[l, p] = -21;
+                        }
                     }
 
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                    }
+                    clearTheBoard = true;
 
-                }
-                else if (blockType == 3 && pauseFlag == 0)
-                {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard - 1] == 1
-                        || digitalBoard[yBoard2, xBoard2 - 1] == 1
-                        || digitalBoard[yBoard3, xBoard3 - 1] == 1)
-                    {
-                        // Dont move the object 
-                    }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                        xBoard4 -= 1;
-                    }
-                }
-                else if (blockType == 4 && pauseFlag == 0)
-                {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard] == 1
-                        || digitalBoard[yBoard2, xBoard2] == 1
-                        || digitalBoard[yBoard4, xBoard4] == 1)
-                    {
-                         // Dont move the object 
-    
-                    }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                        xBoard4 -= 1;
-                    }
-                }
-                else if(blockType == 5 && pauseFlag == 0)
-                {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard - 1] == 1
-                        || digitalBoard[yBoard3, xBoard3 - 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                        xBoard4 -= 1;
-                    }
-                }
-                else if (blockType == 6 && pauseFlag == 0)
-                {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard - 1] == 1
-                        || digitalBoard[yBoard3, xBoard3 - 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                        xBoard4 -= 1;
-                    }
-                }
-                else if (blockType == 7 && pauseFlag == 0)
-                {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard - 1] == 1
-                        || digitalBoard[yBoard3, xBoard3 - 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                        xBoard4 -= 1;
-                    }
-                }
-                else if (blockType == 8 && pauseFlag == 0)
-                {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard - 1] == 1
-                        || digitalBoard[yBoard2, xBoard2 - 1] == 1
-                        || digitalBoard[yBoard4, xBoard4 - 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                        xBoard4 -= 1;
-                    }
-                }
-                else if(blockType == 9 && pauseFlag == 0)
-                {
-                    if (currentBlock.x - 20 <= -1
-                        || digitalBoard[yBoard, xBoard - 1] == 1
-                        || digitalBoard[yBoard3, xBoard3 - 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x -= 20;
-                        xBoard -= 1;
-                        xBoard2 -= 1;
-                        xBoard3 -= 1;
-                        xBoard4 -= 1;
-                    }
-                }
-            }
+                    // end of r changes
+                    scoreAlreadyAdded = false;
+                    gameOver = false;
 
 
-            // Move Right
-            else if (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D) && !gameOver)
-            {
-                if (blockType == 0 && pauseFlag == 0)
-                {
-                    if (xBoard + 1 >= 10
-                        || digitalBoard[yBoard, xBoard + 1] == 1)
-                    {
-                        // Dont move the object 
-                    }
+                }
 
-                    else
-                    {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                    }
-                }
-                else if (blockType == 1 && pauseFlag == 0)
+                // Move Left
+                if (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A) && !gameOver && pauseFlag == 0)
                 {
-                    if (xBoard + 3 >= 10
-                        || digitalBoard[yBoard, xBoard3 + 1] == 1)
+                    if (blockType == 0)
                     {
-                        // Dont move the object 
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard - 1] == 1)
+                        {
+                            // Dont move the object 
+                        }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                        }
                     }
-                    else
+                    else if (blockType == 1)
                     {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard - 1] == 1)
+                        {
+                            // Dont move the object 
+                        }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                        }
                     }
-                }
-                else if (blockType == 2 && pauseFlag == 0)
-                {
-                    if (xBoard + 1 >= 10 || xBoard2 + 1 >= 10 || xBoard3 + 1 >= 10
-                        || digitalBoard[yBoard, xBoard + 1] == 1
-                        || digitalBoard[yBoard2, xBoard + 1] == 1
-                        || digitalBoard[yBoard3, xBoard + 1] == 1)
+                    else if (blockType == 2)
                     {
-                        // Dont move the object 
-                    }
-                    else
-                    {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
-                    }
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard - 1] == 1
+                            || digitalBoard[yBoard2, xBoard - 1] == 1
+                            || digitalBoard[yBoard3, xBoard - 1] == 1)
+                        {
+                            // Dont move the object
+                        }
 
-                }
-                else if (blockType == 3 && pauseFlag == 0)
-                {
-                    if (xBoard + 2 >= 10
-                        || digitalBoard[yBoard, xBoard + 1] == 1
-                        || digitalBoard[yBoard2, xBoard2 + 1] == 1
-                        || digitalBoard[yBoard4, yBoard4 + 1] == 1)
-                    {
-                        // Dont move the object 
-                    }
-                    else
-                    {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
-                        xBoard4 += 1;
-                    }
-                }
-                else if (blockType == 4 && pauseFlag == 0)
-                {
-                    if (xBoard + 2 >= 10
-                        || digitalBoard[yBoard, xBoard + 1] == 1
-                        || digitalBoard[yBoard3, xBoard3 + 1] == 1
-                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
-                        xBoard4 += 1;
-                    }
-                }
-                else if (blockType == 5 && pauseFlag == 0)
-                {
-                    if (xBoard + 2 >= 10
-                        || digitalBoard[yBoard2, xBoard2 + 1] == 1
-                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
-                        xBoard4 += 1;
-                    }
-                }
-                else if (blockType == 6 && pauseFlag == 0)
-                {
-                    if (xBoard + 3 >= 10
-                        || digitalBoard[yBoard2, xBoard2 + 1] == 1
-                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
-                        xBoard4 += 1;
-                    }
-                }
-                else if (blockType == 7 && pauseFlag == 0)
-                {
-                    if (xBoard + 3 >= 10
-                        || digitalBoard[yBoard2, xBoard2 + 1] == 1
-                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
-                        xBoard4 += 1;
-                    }
-                }
-                else if (blockType == 8 && pauseFlag == 0)
-                {
-                    if (xBoard + 2 >= 10
-                        || digitalBoard[yBoard, xBoard + 1] == 1
-                        || digitalBoard[yBoard3, xBoard3 + 1] == 1
-                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
-                        xBoard4 += 1;
-                    }
-                }
-                else if (blockType == 9 && pauseFlag == 0)
-                {
-                    if (xBoard + 2 >= 10
-                        || digitalBoard[yBoard3, xBoard3 + 1] == 1
-                        || digitalBoard[yBoard4, xBoard4 + 1] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.x += 20;
-                        xBoard += 1;
-                        xBoard2 += 1;
-                        xBoard3 += 1;
-                        xBoard4 += 1;
-                    }
-                }
-            }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                        }
 
-            else if (oldState.IsKeyUp(Keys.P) && newState.IsKeyDown(Keys.P))
-            {
+                    }
+                    else if (blockType == 3)
+                    {
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard - 1] == 1
+                            || digitalBoard[yBoard2, xBoard2 - 1] == 1
+                            || digitalBoard[yBoard3, xBoard3 - 1] == 1)
+                        {
+                            // Dont move the object 
+                        }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                            xBoard4 -= 1;
+                        }
+                    }
+                    else if (blockType == 4)
+                    {
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard] == 1
+                            || digitalBoard[yBoard2, xBoard2] == 1
+                            || digitalBoard[yBoard4, xBoard4] == 1)
+                        {
+                            // Dont move the object 
 
-                if (blockType == 0 && pauseFlag == 0)
-                {
-                    // currentBlock.changeY();
-                    if (currentBlock.y + 40 >= 380 
-                        || digitalBoard[yBoard + 2, xBoard] == 1)
-                    { }
+                        }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                            xBoard4 -= 1;
+                        }
+                    }
+                    else if (blockType == 5)
+                    {
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard - 1] == 1
+                            || digitalBoard[yBoard3, xBoard3 - 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                            xBoard4 -= 1;
+                        }
+                    }
+                    else if (blockType == 6)
+                    {
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard - 1] == 1
+                            || digitalBoard[yBoard3, xBoard3 - 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                            xBoard4 -= 1;
+                        }
+                    }
+                    else if (blockType == 7)
+                    {
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard - 1] == 1
+                            || digitalBoard[yBoard3, xBoard3 - 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                            xBoard4 -= 1;
+                        }
+                    }
+                    else if (blockType == 8)
+                    {
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard - 1] == 1
+                            || digitalBoard[yBoard2, xBoard2 - 1] == 1
+                            || digitalBoard[yBoard4, xBoard4 - 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                            xBoard4 -= 1;
+                        }
+                    }
+                    else if (blockType == 9)
+                    {
+                        if (currentBlock.x - 20 <= -1
+                            || digitalBoard[yBoard, xBoard - 1] == 1
+                            || digitalBoard[yBoard3, xBoard3 - 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x -= 20;
+                            xBoard -= 1;
+                            xBoard2 -= 1;
+                            xBoard3 -= 1;
+                            xBoard4 -= 1;
+                        }
+                    }
+                }
 
-                    else
-                    {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                    }
-                }
-                else if (blockType == 1 && pauseFlag == 0)
-                {
-                    if (currentBlock.y + 40 >= 380
-                        || digitalBoard[yBoard + 2, xBoard] == 1
-                        || digitalBoard[yBoard + 2, xBoard2] == 1
-                        || digitalBoard[yBoard + 2, xBoard3] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                        yBoard2 += 1;
-                        yBoard3 += 1;
-                    }
-                }
-                else if (blockType == 2 && pauseFlag == 0)
-                {
-                    if (currentBlock.y + 60 >= 380
-                        || digitalBoard[yBoard3 + 2, xBoard] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                        yBoard2 += 1;
-                        yBoard3 += 1;
-                    }
 
-                }
-                else if (blockType == 3 && pauseFlag == 0)
+                // Move Right
+                else if (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D) && !gameOver && pauseFlag == 0)
                 {
-                    if (currentBlock.y + 60 >= 380
-                        || digitalBoard[yBoard3 + 2, xBoard3] == 1
-                        || digitalBoard[yBoard4 + 2, xBoard4] == 1)
-                    { }
+                    if (blockType == 0)
+                    {
+                        if (xBoard + 1 >= 10
+                            || digitalBoard[yBoard, xBoard + 1] == 1)
+                        {
+                            // Dont move the object 
+                        }
 
-                    else
-                    {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                        yBoard2 += 1;
-                        yBoard3 += 1;
-                        yBoard4 += 1;
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                        }
                     }
-                }
-                else if (blockType == 4 && pauseFlag == 0)
-                {
-                    if (currentBlock.y + 60 >= 380
-                        || digitalBoard[yBoard2 + 2, xBoard2] == 1
-                        || digitalBoard[yBoard4 + 2, xBoard4] == 1)
-                    { }
-                    else
+                    else if (blockType == 1)
                     {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                        yBoard2 += 1;
-                        yBoard3 += 1;
-                        yBoard4 += 1;
+                        if (xBoard + 3 >= 10
+                            || digitalBoard[yBoard, xBoard3 + 1] == 1)
+                        {
+                            // Dont move the object 
+                        }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                        }
                     }
-                }
-                else if (blockType == 5 && pauseFlag == 0)
-                {
-                    if(currentBlock.y + 40 >= 380
-                        || digitalBoard[yBoard3 + 2, xBoard3] == 1
-                        || digitalBoard[yBoard4 + 2, xBoard4] == 1)
-                    { }
-                    else
+                    else if (blockType == 2)
                     {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                        yBoard2 += 1;
-                        yBoard3 += 1;
-                        yBoard4 += 1;
-                    }
-                }
-                else if (blockType == 6 && pauseFlag == 0)
-                {
-                    if (currentBlock.y + 40 >= 380
-                        || digitalBoard[yBoard + 2, xBoard] == 1
-                        || digitalBoard[yBoard2 + 2, xBoard2] == 1
-                        || digitalBoard[yBoard4 + 2, xBoard4] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                        yBoard2 += 1;
-                        yBoard3 += 1;
-                        yBoard4 += 1;
-                    }
-                }
-                else if (blockType == 7 && pauseFlag == 0)
-                {
-                    if (currentBlock.y + 40 >= 380
-                        || digitalBoard[yBoard + 2, xBoard] == 1
-                        || digitalBoard[yBoard3 + 2, xBoard3] == 1
-                        || digitalBoard[yBoard4 + 2, xBoard4] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                        yBoard2 += 1;
-                        yBoard3 += 1;
-                        yBoard4 += 1;
-                    }
-                }
-                else if (blockType == 8 && pauseFlag == 0)
-                {
-                    if (currentBlock.y + 40 >= 380
-                        || digitalBoard[yBoard + 2, xBoard] == 1
-                        || digitalBoard[yBoard3 + 2, xBoard3] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                        yBoard2 += 1;
-                        yBoard3 += 1;
-                        yBoard4 += 1;
-                    }
-                }
-                else if (blockType == 9 && pauseFlag == 0)
-                {
-                    if (currentBlock.y + 40 >= 380
-                        || digitalBoard[yBoard + 2, xBoard] == 1
-                        || digitalBoard[yBoard2 + 2, xBoard2] == 1
-                        || digitalBoard[yBoard4 + 2, xBoard4] == 1)
-                    { }
-                    else
-                    {
-                        currentBlock.y += 20;
-                        yBoard += 1;
-                        yBoard2 += 1;
-                        yBoard3 += 1;
-                        yBoard4 += 1;
-                    }
-                }
-            }
+                        if (xBoard + 1 >= 10 || xBoard2 + 1 >= 10 || xBoard3 + 1 >= 10
+                            || digitalBoard[yBoard, xBoard + 1] == 1
+                            || digitalBoard[yBoard2, xBoard + 1] == 1
+                            || digitalBoard[yBoard3, xBoard + 1] == 1)
+                        {
+                            // Dont move the object 
+                        }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                        }
 
-        else if((oldState.IsKeyUp(Keys.P) && newState.IsKeyDown(Keys.P))
-                || (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A))
-                || (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D))
-                || (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M)))
-            { }
-            else {}
-            oldState = newState;
+                    }
+                    else if (blockType == 3)
+                    {
+                        if (xBoard + 2 >= 10
+                            || digitalBoard[yBoard, xBoard + 1] == 1
+                            || digitalBoard[yBoard2, xBoard2 + 1] == 1
+                            || digitalBoard[yBoard4, yBoard4 + 1] == 1)
+                        {
+                            // Dont move the object 
+                        }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                            xBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 4)
+                    {
+                        if (xBoard + 2 >= 10
+                            || digitalBoard[yBoard, xBoard + 1] == 1
+                            || digitalBoard[yBoard3, xBoard3 + 1] == 1
+                            || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                            xBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 5)
+                    {
+                        if (xBoard + 2 >= 10
+                            || digitalBoard[yBoard2, xBoard2 + 1] == 1
+                            || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                            xBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 6)
+                    {
+                        if (xBoard + 3 >= 10
+                            || digitalBoard[yBoard2, xBoard2 + 1] == 1
+                            || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                            xBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 7)
+                    {
+                        if (xBoard + 3 >= 10
+                            || digitalBoard[yBoard2, xBoard2 + 1] == 1
+                            || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                            xBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 8)
+                    {
+                        if (xBoard + 2 >= 10
+                            || digitalBoard[yBoard, xBoard + 1] == 1
+                            || digitalBoard[yBoard3, xBoard3 + 1] == 1
+                            || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                            xBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 9)
+                    {
+                        if (xBoard + 2 >= 10
+                            || digitalBoard[yBoard3, xBoard3 + 1] == 1
+                            || digitalBoard[yBoard4, xBoard4 + 1] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.x += 20;
+                            xBoard += 1;
+                            xBoard2 += 1;
+                            xBoard3 += 1;
+                            xBoard4 += 1;
+                        }
+                    }
+                }
+                //Move block down
+                else if (oldState.IsKeyUp(Keys.P) && newState.IsKeyDown(Keys.P) && pauseFlag == 0)
+                {
+
+                    if (blockType == 0)
+                    {
+                        // currentBlock.changeY();
+                        if (currentBlock.y + 40 >= 380
+                            || digitalBoard[yBoard + 2, xBoard] == 1)
+                        { }
+
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                        }
+                    }
+                    else if (blockType == 1)
+                    {
+                        if (currentBlock.y + 40 >= 380
+                            || digitalBoard[yBoard + 2, xBoard] == 1
+                            || digitalBoard[yBoard + 2, xBoard2] == 1
+                            || digitalBoard[yBoard + 2, xBoard3] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                        }
+                    }
+                    else if (blockType == 2)
+                    {
+                        if (currentBlock.y + 60 >= 380
+                            || digitalBoard[yBoard3 + 2, xBoard] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                        }
+
+                    }
+                    else if (blockType == 3)
+                    {
+                        if (currentBlock.y + 60 >= 380
+                            || digitalBoard[yBoard3 + 2, xBoard3] == 1
+                            || digitalBoard[yBoard4 + 2, xBoard4] == 1)
+                        { }
+
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                            yBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 4)
+                    {
+                        if (currentBlock.y + 60 >= 380
+                            || digitalBoard[yBoard2 + 2, xBoard2] == 1
+                            || digitalBoard[yBoard4 + 2, xBoard4] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                            yBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 5)
+                    {
+                        if (currentBlock.y + 40 >= 380
+                            || digitalBoard[yBoard3 + 2, xBoard3] == 1
+                            || digitalBoard[yBoard4 + 2, xBoard4] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                            yBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 6)
+                    {
+                        if (currentBlock.y + 40 >= 380
+                            || digitalBoard[yBoard + 2, xBoard] == 1
+                            || digitalBoard[yBoard2 + 2, xBoard2] == 1
+                            || digitalBoard[yBoard4 + 2, xBoard4] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                            yBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 7)
+                    {
+                        if (currentBlock.y + 40 >= 380
+                            || digitalBoard[yBoard + 2, xBoard] == 1
+                            || digitalBoard[yBoard3 + 2, xBoard3] == 1
+                            || digitalBoard[yBoard4 + 2, xBoard4] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                            yBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 8)
+                    {
+                        if (currentBlock.y + 40 >= 380
+                            || digitalBoard[yBoard + 2, xBoard] == 1
+                            || digitalBoard[yBoard3 + 2, xBoard3] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                            yBoard4 += 1;
+                        }
+                    }
+                    else if (blockType == 9)
+                    {
+                        if (currentBlock.y + 40 >= 380
+                            || digitalBoard[yBoard + 2, xBoard] == 1
+                            || digitalBoard[yBoard2 + 2, xBoard2] == 1
+                            || digitalBoard[yBoard4 + 2, xBoard4] == 1)
+                        { }
+                        else
+                        {
+                            currentBlock.y += 20;
+                            yBoard += 1;
+                            yBoard2 += 1;
+                            yBoard3 += 1;
+                            yBoard4 += 1;
+                        }
+                    }
+                }
+
+                else if ((oldState.IsKeyUp(Keys.P) && newState.IsKeyDown(Keys.P))
+                        || (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A))
+                        || (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D))
+                        || (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M)))
+                { }
+                else { }
+                oldState = newState;
         } // end of keyboardhandler
 
         bool isNextSpotFilled()
