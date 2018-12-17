@@ -11,13 +11,29 @@ namespace TetrisJFR_GitHub
     {
         protected override void Draw(GameTime gameTime)
         {
-            if (pauseFlag == 1)
+            if (!gameStarted)
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(startGameSplash, new Rectangle(0, 0, 180, 380), Color.White);
+                spriteBatch.DrawString(scoreText, "WELCOME TO TETRIS 2!", new Vector2(33, 0), Color.OrangeRed);
+                spriteBatch.DrawString(scoreText, "Rules: (Keys to Press)", new Vector2(0, 40), Color.DodgerBlue);
+                spriteBatch.DrawString(scoreText, "A to move LEFT", new Vector2(0, 80), Color.DodgerBlue);
+                spriteBatch.DrawString(scoreText, "D to move RIGHT", new Vector2(0, 120), Color.DodgerBlue);
+                spriteBatch.DrawString(scoreText, "P to move DOWN", new Vector2(0, 160), Color.DodgerBlue);
+                spriteBatch.DrawString(scoreText, "M to PAUSE", new Vector2(0, 200), Color.DodgerBlue);
+                spriteBatch.DrawString(scoreText, "R to RESET the game", new Vector2(0, 240), Color.DodgerBlue);
+                spriteBatch.DrawString(scoreText, "ESC to EXIT the game", new Vector2(0, 280), Color.DodgerBlue);
+                spriteBatch.DrawString(scoreText, "Finally, ", new Vector2(0, 320), Color.DodgerBlue);
+                spriteBatch.DrawString(scoreText, "press ENTER to START!", new Vector2(0, 400), Color.LightGreen);
+                spriteBatch.End();
+            }
+            if (pauseFlag == 1 && gameStarted)
             {
                 spriteBatch.Begin();
                 spriteBatch.DrawString(scoreText, "Paused", new Vector2(200, 420), Color.Red);
                 spriteBatch.End();
             }
-            else
+            else if(gameStarted)
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();

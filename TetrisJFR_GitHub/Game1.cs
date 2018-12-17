@@ -66,6 +66,12 @@ namespace TetrisJFR_GitHub
         //Pause flag initialization:
         int pauseFlag = 0;
 
+        //background for the menu
+        Texture2D startGameSplash;
+
+        //check if game started
+        bool gameStarted;
+
         // Initializing our timer
         // Source used to create timer:
         // https://stackoverflow.com/questions/13394892/how-to-create-a-timer-counter-in-c-sharp-xna
@@ -211,12 +217,49 @@ namespace TetrisJFR_GitHub
 
         void KeyboardHandler()
         {
-                KeyboardState newState = Keyboard.GetState();
-                //bool leftArrowKeyDown = state.IsKeyDown(Keys.Left);
+
+            KeyboardState newState = Keyboard.GetState();
+
+            //The menu will show if the player does not press the ENTER key
+            //but the game will start if the ENTER key is pressed
+            if (!gameStarted)
+            {
+                if (oldState.IsKeyUp(Keys.Enter) && newState.IsKeyDown(Keys.Enter) && !gameOver)
+                {
+                    score = 0;
+                    // r changes
+
+                    int numRow = 20;
+                    int l;
+                    int p;
+                    int numCol = 10;
+                    for (l = 0; l < numRow; ++l)
+                    {
+                        for (p = 0; p < numCol; ++p)
+                        {
+                            digitalBoard[l, p] = 0;
+                            blockColorArray[l, p] = -21;
+                        }
+                    }
+
+                    clearTheBoard = true;
+
+                    // end of r changes
+                    scoreAlreadyAdded = false;
+                    gameOver = false;
+
+                    gameStarted = true;
+                }
+                return;
+            }
+                
+                //press esc to exit the game
                 if (oldState.IsKeyUp(Keys.Escape) && newState.IsKeyDown(Keys.Escape) && !gameOver)
                 {
                     Exit();
                 }
+
+                //press the M to pause the game
                 if (oldState.IsKeyUp(Keys.M) && newState.IsKeyDown(Keys.M) && !gameOver)
                 {
                     pauseFlag ^= 1;
@@ -884,11 +927,9 @@ namespace TetrisJFR_GitHub
             return true;
         }
 
-
         int randomNumberGenerator()
         {
-            /*
-                
+            /*                
             From the Microsoft Documentation:
             The following example calls the Next(Int32, Int32) method to
             generate 10 random numbers between -10 and 10. Note that the second
@@ -898,9 +939,7 @@ namespace TetrisJFR_GitHub
 
             Therefore, to randomly generate a number between 0 and 3, it must be
             called like this:
-            randomNumber = RNG.Next(0, 4);
-
-             
+            randomNumber = RNG.Next(0, 4);          
             */
             Random RNG = new Random();
             int randomNumber = RNG.Next(0, 10);
@@ -918,10 +957,7 @@ namespace TetrisJFR_GitHub
             {
                 randomNumber = RNG.Next(0, 11);
             }
-
             return randomNumber;
         }
-
-
     }
 }

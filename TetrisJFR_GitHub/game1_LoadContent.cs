@@ -26,10 +26,11 @@ namespace TetrisJFR_GitHub
             // Load the spriteFont for the score
             scoreText = Content.Load<SpriteFont>("score");
 
+            // Load the texture for the background menu
+            startGameSplash = Content.Load<Texture2D>("start-splash");
+
             // Load the texture for the block that is falling.  
             // Note to self - this is done in the fallingBlock.cs file
-
-
             base.LoadContent();
 
             // TODO: use this.Content to load your game content here

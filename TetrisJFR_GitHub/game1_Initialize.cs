@@ -20,6 +20,9 @@ namespace TetrisJFR_GitHub
             // Makes the mouse visible to the user.
             this.IsMouseVisible = true;
 
+            //game did not start yet
+            gameStarted = false;
+
             // Generate the blockType using a randomNumberGenerator
             blockType = randomNumberGenerator();
 
