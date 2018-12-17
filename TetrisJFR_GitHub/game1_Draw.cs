@@ -77,8 +77,8 @@ namespace TetrisJFR_GitHub
                         spriteBatch.DrawString(scoreText, (k + 1) + ". " + highscores[k].ToString(), new Vector2(270, 120 + (40 * k)), Color.CornflowerBlue);
                     }
 
-                    spriteBatch.DrawString(scoreText, "Game Over", new Vector2(200, 410), Color.Red);
-                    spriteBatch.DrawString(scoreText, "Press R to restart.", new Vector2(200, 450), Color.Red);
+                    spriteBatch.DrawString(scoreText, "Game Over", new Vector2(200, 360), Color.Red);
+                    spriteBatch.DrawString(scoreText, "Press R to restart.", new Vector2(200, 400), Color.Red);
 
                     for (int k = 0; k < 3; ++k)
                     {
