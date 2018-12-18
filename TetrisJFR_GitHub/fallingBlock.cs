@@ -17,8 +17,7 @@ using Microsoft.Xna.Framework.Media;
   to compensate for the absence of the rotate feature
 
   The blockColor variable is used in tandem with the delete row functionality,
-  while the blockType variable is used to create new blocks that the user an create.
-  
+  while the blockType variable is used to create new blocks that the user an create.  
 */
 
 namespace TetrisJFR_GitHub
@@ -77,7 +76,6 @@ namespace TetrisJFR_GitHub
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // Load the texture
             droppingBlock = game.Content.Load<Texture2D>("greyBlock");
             base.LoadContent();
@@ -256,6 +254,8 @@ namespace TetrisJFR_GitHub
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.YellowGreen);
             }
+
+            //Creates Pink Block
             else if (blockColor == 9)
             {
                 spriteBatch.Draw(droppingBlock, new Vector2(x, y), Color.HotPink);

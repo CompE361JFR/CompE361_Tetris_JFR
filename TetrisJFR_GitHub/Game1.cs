@@ -5,21 +5,11 @@ using System.Threading;
 using System;
 using System.Collections.Generic;
 
-// This comment is to test the Commit /sync functions of the GitHub extension
-// on Visual Studio. -- Raven Tomas
-//test on this file - Fate - test again
-
-//Test of the commit/sync function. - Jayson Del Moral
-
 namespace TetrisJFR_GitHub
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
-
     /*
         The Game1.cs file contains mostly functions that we have created that are not
-        a part of the MonoGame Library.
+        a part of the MonoGame Library. This file is also the main type for our game.
 
         It also contains the variables that we have used for our program. Such as the
         arrays that we have used to store vital game data, such as where blocks are 
@@ -28,8 +18,7 @@ namespace TetrisJFR_GitHub
 
         List of functions include:
         - KeyboardHandler()
-        - randomNumberGenerator()
-        
+        - randomNumberGenerator()      
     */
 
     public partial class Game1 : Game
