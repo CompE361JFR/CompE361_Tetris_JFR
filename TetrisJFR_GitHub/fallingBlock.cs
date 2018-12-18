@@ -10,6 +10,17 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+/*
+  This fallingBlock.cs file is used to create the shapes within Tetris.
+  Since we failed to implement the rotate function in time, we have opted
+  to create multiple instances of our blocks, but in different orientations
+  to compensate for the absence of the rotate feature
+
+  The blockColor variable is used in tandem with the delete row functionality,
+  while the blockType variable is used to create new blocks that the user an create.
+  
+*/
+
 namespace TetrisJFR_GitHub
 {
     public class fallingBlock : DrawableGameComponent
@@ -47,8 +58,7 @@ namespace TetrisJFR_GitHub
         // For example. A blockColor of 3 will result in a yellow 1x1 block
 
         // This constructor is used in tandem with the delete row.
-        // 11/26/18 NOTE TO SELF, REDEFINE _X AND _Y TO BE ROW AND COLUMN
-        // TO PREVENT ANY CONFUSION
+        // Note: Becareful how you use this constructor, please refer to this definition.
         public fallingBlock(Game1 game, int _blockColor, int COLUMN, int ROW) : base(game)
         {
             this.game = game;
@@ -61,13 +71,6 @@ namespace TetrisJFR_GitHub
 
         public override void Initialize()
         {
-            /* // REMOVING THIS FIXES THE WEIRD PLACEMENT OF BLOCK L ON BOARD
-            if (this.blockType == 3)
-            {
-                this.y = 40; // Set the bottom of the block to be this y coordinate
-                // ERROR/ BUG HERE 
-            }
-            */
             base.Initialize();
         }
 

@@ -4,6 +4,14 @@ using Microsoft.Xna.Framework.Input;
 using System.Threading;
 using System;
 
+/*
+ 
+    This function is used to initialize all the variables for our game. 
+    This function will only run once, initializing all the variables in order to 
+    start our game.
+    
+ */
+
 namespace TetrisJFR_GitHub
 {
     public partial class Game1 : Game

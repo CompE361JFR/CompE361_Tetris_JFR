@@ -4,6 +4,15 @@ using Microsoft.Xna.Framework.Input;
 using System.Threading;
 using System;
 
+
+/*
+ 
+    The LoadContent.cs function includes MonoGame's Loadcontent function
+    This functions loads all the images that we used in our game,
+    such as the blocks that were used to make the playing field, the tetris shapes, and
+    all the text fonts and logos that were used within the game
+
+ */
 namespace TetrisJFR_GitHub
 {
     public partial class Game1 : Game

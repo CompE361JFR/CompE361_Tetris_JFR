@@ -5,6 +5,17 @@ using System.Threading;
 using System;
 using System.Collections.Generic;
 
+/*
+ 
+    This function is used to draw all the pictures within our game,
+    including all the text, logos, blocks, and the playing field.
+
+    This function is in charge of creating the board, as well as creating 
+    new blocks for the user to control, as well as displaying texts such as 
+    high scores for the user to see. 
+
+ */
+
 namespace TetrisJFR_GitHub
 {
     public partial class Game1 : Game

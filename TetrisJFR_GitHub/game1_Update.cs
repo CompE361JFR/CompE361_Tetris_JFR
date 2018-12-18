@@ -4,6 +4,15 @@ using Microsoft.Xna.Framework.Input;
 using System.Threading;
 using System;
 
+/*
+ 
+    The update function is in charge of making the block fall by using the clock that
+    has been initialized from the beginning of the game, as well as to 
+    tell the program to make a new block, should the block reach the bottom
+    of the board, or if the block comes in contact with another block.
+
+ */
+
 namespace TetrisJFR_GitHub
 {
     public partial class Game1 : Game
@@ -220,16 +229,7 @@ namespace TetrisJFR_GitHub
                             blockColorArray[yBoard2, xBoard2] = 2;
                             blockColorArray[yBoard3, xBoard3] = 2;
 
-                            /* GET RID OF THIS!!!!
-                            // Reset the board coordinates
-                            yBoard = 0;
-                            yBoard2 = 0;
-                            yBoard3 = 0;
-
-                            xBoard = 4;
-                            xBoard2 = 5;
-                            xBoard3 = 6;
-                            */
+                            
 
                             // Used for generating a new block
                             generateNewObject = 1;
@@ -246,17 +246,7 @@ namespace TetrisJFR_GitHub
                             blockColorArray[yBoard2, xBoard2] = 2;
                             blockColorArray[yBoard3, xBoard3] = 2;
 
-                            //GET RID OF THIS
-                            /* 
-                            // Reset the board coordinates
-                            yBoard = 0;
-                            yBoard2 = 0;
-                            yBoard3 = 0;
-
-                            xBoard = 4;
-                            xBoard2 = 5;
-                            xBoard3 = 6;
-                            */
+                            
 
                             // Used for generating a new block
                             generateNewObject = 1;

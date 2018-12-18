@@ -18,22 +18,18 @@ namespace TetrisJFR_GitHub
     /// </summary>
 
     /*
-        -This class is controls the creation of the board, and the movement of
-        the falling Block.
+        The Game1.cs file contains mostly functions that we have created that are not
+        a part of the MonoGame Library.
 
-        -It also contains the code necessary to handle the keyboard inputs
+        It also contains the variables that we have used for our program. Such as the
+        arrays that we have used to store vital game data, such as where blocks are 
+        placed, along with their corresponding coordinates, and what blocks they 
+        represent
 
-         
-       - When deleting blocks or clearing rows, have an array that has all the characteritics
-        -of the block, so you can bring it down later using the draw function
-
-
-        ------------------------------------------------------
-        NOTE TO SELF: maybe create a updateArray() function, 
-        which updates the contents of the array, instead of doing it for each blockType.
-        This will prevent the programmer from typing repetitive code
-        ------------------------------------------------------
-         
+        List of functions include:
+        - KeyboardHandler()
+        - randomNumberGenerator()
+        
     */
 
     public partial class Game1 : Game
@@ -209,12 +205,32 @@ namespace TetrisJFR_GitHub
         bool gameOver = false;
         bool clearTheBoard = false;
 
+        // Default Constructor
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
+        /*
+        // The KeyboardHandler() handles all the user keyboard inputs.
+
+            In this case, we have programmed the "A" and "D" keys for the 
+            user to move the block left and right
+
+            - We have used the "P" key to allow the player to lower the block
+            by one row. Pressing this button frequently will allow the
+            user to bring the block down faster.
+            - "Enter" is used to start the game
+            - "ESC" is used to exit the game
+            - "M" is used to pause the game.
+            - "R" is used to reset the game, once the game ends
+
+            This KeyboardHandler() also contains code that forces
+            the user's block to stay within the playing area. Should they try
+            exit the range of the playing field, the code wont allow them to pass.
+
+        */
         void KeyboardHandler()
         {
 
